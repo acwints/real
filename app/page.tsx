@@ -210,7 +210,7 @@ export default function Home() {
           </div>
           
           <div className="grid md:grid-cols-2 gap-24 max-w-5xl mx-auto">
-            <div className="text-center md:text-left">
+            <div className="text-center">
               <h3 className="text-3xl font-light text-neutral-900 mb-8 tracking-wide">Residential</h3>
               <div className="space-y-6 text-neutral-600 leading-relaxed text-lg">
                 <p>
@@ -224,7 +224,7 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="text-center md:text-left">
+            <div className="text-center">
               <h3 className="text-3xl font-light text-neutral-900 mb-8 tracking-wide">Commercial</h3>
               <div className="space-y-6 text-neutral-600 leading-relaxed text-lg">
                 <p>
@@ -253,7 +253,7 @@ export default function Home() {
           </div>
           
           <div className="grid md:grid-cols-2 gap-24 max-w-5xl mx-auto mb-24">
-            <div className="text-center md:text-left">
+            <div className="text-center">
               <h3 className="text-3xl font-light mb-8 tracking-wide">Market Timing</h3>
               <div className="space-y-6 text-neutral-300 leading-relaxed text-lg">
                 <p>
@@ -271,7 +271,7 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="text-center md:text-left">
+            <div className="text-center">
               <h3 className="text-3xl font-light mb-8 tracking-wide">Policy Support</h3>
               <div className="space-y-6 text-neutral-300 leading-relaxed text-lg">
                 <p>
@@ -308,38 +308,29 @@ export default function Home() {
             <h2 className="text-5xl font-light text-neutral-900">Strategic Position</h2>
           </div>
           
-          <div className="grid md:grid-cols-5 gap-20 items-center">
-            <div className="md:col-span-2 text-center md:text-left">
+          <div className="grid md:grid-cols-2 gap-20 items-center max-w-5xl mx-auto">
+            <div className="text-center">
               <p className="text-neutral-600 leading-relaxed mb-12 text-lg">
                 Directly adjacent to the Ashby BART Station at the intersection of Shattuck and Ashby Avenues, 
                 providing unparalleled connectivity throughout the Bay Area.
               </p>
               <div className="space-y-6">
-                <div className="flex items-start justify-center md:justify-start">
-                  <div className="text-neutral-400 mr-4 mt-1 text-xl">—</div>
-                  <div className="text-left">
-                    <div className="font-medium text-neutral-900 text-lg">Direct BART Access</div>
-                    <div className="text-neutral-600">On-site station connectivity</div>
-                  </div>
+                <div>
+                  <div className="font-medium text-neutral-900 text-lg mb-2">Direct BART Access</div>
+                  <div className="text-neutral-600">On-site station connectivity</div>
                 </div>
-                <div className="flex items-start justify-center md:justify-start">
-                  <div className="text-neutral-400 mr-4 mt-1 text-xl">—</div>
-                  <div className="text-left">
-                    <div className="font-medium text-neutral-900 text-lg">Adeline Corridor</div>
-                    <div className="text-neutral-600">Vibrant commercial district</div>
-                  </div>
+                <div>
+                  <div className="font-medium text-neutral-900 text-lg mb-2">Adeline Corridor</div>
+                  <div className="text-neutral-600">Vibrant commercial district</div>
                 </div>
-                <div className="flex items-start justify-center md:justify-start">
-                  <div className="text-neutral-400 mr-4 mt-1 text-xl">—</div>
-                  <div className="text-left">
-                    <div className="font-medium text-neutral-900 text-lg">UC Berkeley</div>
-                    <div className="text-neutral-600">Strong institutional demand</div>
-                  </div>
+                <div>
+                  <div className="font-medium text-neutral-900 text-lg mb-2">UC Berkeley</div>
+                  <div className="text-neutral-600">Strong institutional demand</div>
                 </div>
               </div>
             </div>
             
-            <div className="md:col-span-3 bg-neutral-100 rounded-sm h-96 flex items-center justify-center">
+            <div className="bg-neutral-100 rounded-sm h-96 flex items-center justify-center">
               <div className="text-center text-neutral-400">
                 <svg className="w-20 h-20 mx-auto mb-6 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
@@ -499,8 +490,8 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-black text-neutral-500 py-20">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-16 mb-16">
-            <div className="text-center md:text-left">
+          <div className="grid md:grid-cols-3 gap-16 mb-16 text-center">
+            <div>
               <h3 className="text-white text-lg font-medium mb-6 tracking-wide">Ashby BART Station</h3>
               <p className="text-sm leading-relaxed">
                 Mixed-Use Development<br />
@@ -508,7 +499,7 @@ export default function Home() {
               </p>
             </div>
             
-            <div className="text-center md:text-left">
+            <div>
               <h4 className="text-white text-sm uppercase tracking-widest mb-6">Property</h4>
               <p className="text-sm leading-relaxed">
                 3101 Martin Luther King Jr Way<br />
@@ -517,7 +508,7 @@ export default function Home() {
               </p>
             </div>
             
-            <div className="text-center md:text-left">
+            <div>
               <h4 className="text-white text-sm uppercase tracking-widest mb-6">Navigation</h4>
               <div className="space-y-3 text-sm">
                 <a href="#vision" className="block hover:text-white transition">Vision</a>
