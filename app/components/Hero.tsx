@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60"></div>
       
       <div className="relative z-10 text-center text-primary-foreground max-w-6xl mx-auto px-6">
-        <p className="text-sm uppercase tracking-[0.3em] mb-8 text-muted-foreground">Berkeley, California</p>
+        <p className="text-sm uppercase tracking-[0.3em] mb-8 text-primary-foreground/70">Berkeley, California</p>
         <h1 className="text-6xl md:text-8xl font-light mb-12 leading-tight tracking-tight">
           Ashby BART<br />Station
         </h1>
@@ -19,17 +19,17 @@ export default function Hero() {
         <div className="mt-20 flex flex-col md:flex-row gap-12 justify-center items-center">
           <div className="text-center">
             <div className="text-5xl font-light mb-3">750—1,200</div>
-            <div className="text-sm uppercase tracking-widest text-muted-foreground">Units</div>
+            <div className="text-sm uppercase tracking-widest text-primary-foreground/70">Units</div>
           </div>
           <div className="hidden md:block w-px h-20 bg-primary-foreground/20"></div>
           <div className="text-center">
             <div className="text-5xl font-light mb-3">4.4</div>
-            <div className="text-sm uppercase tracking-widest text-muted-foreground">Acres</div>
+            <div className="text-sm uppercase tracking-widest text-primary-foreground/70">Acres</div>
           </div>
           <div className="hidden md:block w-px h-20 bg-primary-foreground/20"></div>
           <div className="text-center">
             <div className="text-5xl font-light mb-3">50%+</div>
-            <div className="text-sm uppercase tracking-widest text-muted-foreground">Affordable</div>
+            <div className="text-sm uppercase tracking-widest text-primary-foreground/70">Affordable</div>
           </div>
         </div>
       </div>

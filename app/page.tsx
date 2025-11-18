@@ -1,8 +1,6 @@
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Vision from './components/Vision';
-import Impact from './components/Impact';
-import Project from './components/Project';
 import Strategy from './components/Strategy';
 import Location from './components/Location';
 import Specs from './components/Specs';
@@ -15,8 +13,6 @@ export default function Home() {
       <Header />
       <Hero />
       <Vision />
-      <Impact />
-      <Project />
       <Strategy />
       <Location />
       <Specs />
