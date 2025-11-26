@@ -41,12 +41,9 @@ export default function Team() {
               ASHBY BART
             </Link>
             <div className="hidden md:flex space-x-10 items-center">
-              <Link href="/#vision" className="text-neutral-300 hover:text-white transition text-sm uppercase tracking-wider">Vision</Link>
-              <Link href="/#project" className="text-neutral-300 hover:text-white transition text-sm uppercase tracking-wider">Project</Link>
-              <Link href="/#impact" className="text-neutral-300 hover:text-white transition text-sm uppercase tracking-wider">Impact</Link>
-              <Link href="/#strategy" className="text-neutral-300 hover:text-white transition text-sm uppercase tracking-wider">Strategy</Link>
               <Link href="/team" className="text-white transition text-sm uppercase tracking-wider">Team</Link>
-              <Link href="/#contact" className="text-neutral-300 hover:text-white transition text-sm uppercase tracking-wider">Contact</Link>
+              <Link href="/map" className="text-neutral-300 hover:text-white transition text-sm uppercase tracking-wider">Map</Link>
+              <Link href="/model" className="text-neutral-300 hover:text-white transition text-sm uppercase tracking-wider">Model</Link>
             </div>
           </div>
         </div>

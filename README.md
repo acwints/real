@@ -6,7 +6,7 @@ A professional real estate developer/investor website showcasing the mixed-use d
 
 This website presents a premier transit-oriented development opportunity featuring:
 
-- **750-1,200 housing units** with at least 50% affordable housing
+- **144 housing units** with 50% affordable housing
 - **4.4 acres** of prime real estate at Shattuck and Ashby Avenues
 - Direct adjacency to **Ashby BART Station**
 - Mixed-use development with residential, retail, and office components
@@ -30,8 +30,11 @@ The website includes:
 4. **Strategic Location** - Transit access and neighborhood context
 5. **Market Opportunity** - Analysis of strengths, considerations, and target demographics
 6. **Political & Regulatory** - Overview of supportive policy environment
-7. **Investment Inquiry Form** - Contact form for interested parties
-8. **Responsive Design** - Optimized for desktop, tablet, and mobile devices
+7. **Interactive Financial Model** - Embedded Google Sheets with all tabs (Pro Forma, Ground Lease, Data, Comps)
+8. **AI Chat Assistant** - OpenAI-powered chat interface to ask questions about the financial model
+9. **Property Map** - Interactive map showing project site and comparable properties
+10. **Investment Inquiry Form** - Contact form for interested parties
+11. **Responsive Design** - Optimized for desktop, tablet, and mobile devices
 
 ## Technology Stack
 
@@ -40,6 +43,8 @@ The website includes:
 - **Styling:** Tailwind CSS
 - **UI:** React with modern hooks
 - **Font:** Geist Sans & Geist Mono
+- **AI:** OpenAI API (for chat assistant)
+- **Maps:** Leaflet.js & React-Leaflet
 
 ## Getting Started
 
@@ -53,6 +58,19 @@ The website includes:
 ```bash
 npm install
 ```
+
+### Environment Setup
+
+For the AI chat feature to work, you need to set up an OpenAI API key:
+
+1. Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
+2. Create a `.env.local` file in the root directory:
+   ```bash
+   OPENAI_API_KEY=your_openai_api_key_here
+   ```
+3. The `.env.local` file is gitignored and won't be committed
+
+**Note:** The chat feature requires API routes, which work in development mode. For production deployment with chat support, deploy to a platform that supports Next.js API routes like Vercel or Netlify.
 
 ### Development
 
@@ -84,10 +102,29 @@ npm start
 
 ```
 /app
-  ├── layout.tsx       # Root layout with metadata
-  ├── page.tsx         # Main landing page
-  └── globals.css      # Global styles
-/public               # Static assets
+  ├── api/
+  │   └── chat/
+  │       └── route.ts           # OpenAI API route handler
+  ├── components/
+  │   ├── ModelChat.tsx          # AI chat interface component
+  │   ├── ProFormaContent.tsx   # Pro forma financial analysis component
+  │   ├── PropertyMap.tsx        # Interactive map component
+  │   └── ...                    # Other UI components
+  ├── data/
+  │   └── properties.ts          # Property data and project site info
+  ├── map/
+  │   └── page.tsx               # Interactive map page
+  ├── model/
+  │   └── page.tsx               # Financial model page (spreadsheet + pro forma tabs)
+  ├── team/
+  │   └── page.tsx               # Team page
+  ├── layout.tsx                 # Root layout with metadata
+  ├── page.tsx                   # Main landing page
+  └── globals.css                # Global styles (Tailwind CSS v4)
+/docs                            # Documentation and analysis files
+/data                            # CSV/TSV data files
+/public                         # Static assets (images, icons)
+/essay                          # Project proposal essay (kept as requested)
 ```
 
 ## Customization

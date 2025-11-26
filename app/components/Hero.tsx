@@ -18,7 +18,7 @@ export default function Hero() {
         </p>
         <div className="mt-20 flex flex-col md:flex-row gap-12 justify-center items-center">
           <div className="text-center">
-            <div className="text-5xl font-light mb-3">750—1,200</div>
+            <div className="text-5xl font-light mb-3">144</div>
             <div className="text-sm uppercase tracking-widest text-primary-foreground/70">Units</div>
           </div>
           <div className="hidden md:block w-px h-20 bg-primary-foreground/20"></div>

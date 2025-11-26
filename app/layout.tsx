@@ -6,6 +6,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Ashby BART",
   description: "A transformative mixed-use development that reimagines urban living at the intersection of transit and community.",
+  icons: {
+    icon: '/icon.svg',
+  },
 };
 
 export default function RootLayout({

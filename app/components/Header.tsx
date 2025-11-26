@@ -9,10 +9,9 @@ export default function Header() {
             ASHBY BART
           </Link>
           <nav className="hidden md:flex space-x-10 items-center">
-            <a href="#vision" className="text-sm uppercase tracking-wider text-muted-foreground hover:text-foreground transition">Vision</a>
-            <a href="#strategy" className="text-sm uppercase tracking-wider text-muted-foreground hover:text-foreground transition">Strategy</a>
             <Link href="/team" className="text-sm uppercase tracking-wider text-muted-foreground hover:text-foreground transition">Team</Link>
-            <a href="#contact" className="text-sm uppercase tracking-wider text-muted-foreground hover:text-foreground transition">Contact</a>
+            <Link href="/map" className="text-sm uppercase tracking-wider text-muted-foreground hover:text-foreground transition">Map</Link>
+            <Link href="/model" className="text-sm uppercase tracking-wider text-muted-foreground hover:text-foreground transition">Model</Link>
           </nav>
         </div>
       </div>

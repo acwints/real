@@ -28,6 +28,8 @@ export default function Footer() {
               <a href="#vision" className="block hover:text-primary-foreground transition">Vision</a>
               <a href="#strategy" className="block hover:text-primary-foreground transition">Strategy</a>
               <Link href="/team" className="block hover:text-primary-foreground transition">Team</Link>
+              <Link href="/map" className="block hover:text-primary-foreground transition">Map</Link>
+              <Link href="/model" className="block hover:text-primary-foreground transition">Model</Link>
               <a href="#contact" className="block hover:text-primary-foreground transition">Contact</a>
             </div>
           </div>

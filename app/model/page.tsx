@@ -1,0 +1,139 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import ModelChat from '../components/ModelChat';
+import ProFormaContent from '../components/ProFormaContent';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+
+export default function ModelPage() {
+  const [activeTab, setActiveTab] = useState<'spreadsheet' | 'proforma'>('spreadsheet');
+  const [isLoading, setIsLoading] = useState(true);
+  const spreadsheetId = '194zQSVqMnUEA9futs2MNPKg2r0g1CLoWdhkDhePOKvI';
+  const embedUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/preview`;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+
+      {/* Hero */}
+      <section className="pt-24 pb-6 bg-neutral-900 text-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <p className="text-sm uppercase tracking-[0.3em] mb-2 text-neutral-400">Financial Model</p>
+          <h1 className="text-4xl md:text-5xl font-light mb-3 leading-tight">
+            Interactive Financial Model
+          </h1>
+          <div className="w-24 h-px bg-white/40 mb-4"></div>
+          <p className="text-base text-neutral-300 max-w-3xl mb-6 leading-relaxed">
+            Complete financial model with spreadsheet and detailed pro forma analysis
+          </p>
+          
+          {/* Chat Interface */}
+          <div className="mt-6">
+            <ModelChat />
+          </div>
+        </div>
+      </section>
+
+      {/* Tabs - Top */}
+      <section className="bg-white border-b border-neutral-200 sticky top-[73px] z-40">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex gap-1">
+            <button
+              onClick={() => setActiveTab('spreadsheet')}
+              className={`px-6 py-3 text-sm font-medium transition ${
+                activeTab === 'spreadsheet'
+                  ? 'text-neutral-900 border-b-2 border-neutral-900'
+                  : 'text-neutral-500 hover:text-neutral-700'
+              }`}
+            >
+              Spreadsheet
+            </button>
+            <button
+              onClick={() => setActiveTab('proforma')}
+              className={`px-6 py-3 text-sm font-medium transition ${
+                activeTab === 'proforma'
+                  ? 'text-neutral-900 border-b-2 border-neutral-900'
+                  : 'text-neutral-500 hover:text-neutral-700'
+              }`}
+            >
+              Pro Forma
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Tab Content */}
+      <section className="py-8 bg-neutral-50 min-h-[calc(100vh-400px)]">
+        <div className="max-w-7xl mx-auto px-6">
+          {activeTab === 'spreadsheet' && (
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-neutral-200/50">
+              {isLoading && (
+                <div className="h-[800px] flex items-center justify-center bg-neutral-50">
+                  <div className="text-center">
+                    <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-neutral-900 mb-4"></div>
+                    <p className="text-neutral-600">Loading spreadsheet...</p>
+                  </div>
+                </div>
+              )}
+              <div className={`w-full ${isLoading ? 'hidden' : 'block'}`}>
+                <iframe
+                  src={embedUrl}
+                  width="100%"
+                  height="800"
+                  frameBorder="0"
+                  className="w-full border-0"
+                  style={{ minHeight: '800px' }}
+                  allowFullScreen
+                  title="Ashby BART Financial Model"
+                  onLoad={() => setIsLoading(false)}
+                />
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'proforma' && <ProFormaContent />}
+          
+          {/* Tabs - Bottom */}
+          {activeTab === 'spreadsheet' && (
+            <div className="mt-6 bg-white border-t border-neutral-200">
+              <div className="max-w-7xl mx-auto px-6">
+                <div className="flex gap-1 py-3">
+                  <button
+                    onClick={() => setActiveTab('spreadsheet')}
+                    className={`px-6 py-2 text-sm font-medium transition ${
+                      activeTab === 'spreadsheet'
+                        ? 'text-neutral-900 border-b-2 border-neutral-900'
+                        : 'text-neutral-500 hover:text-neutral-700'
+                    }`}
+                  >
+                    Spreadsheet
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('proforma')}
+                    className={`px-6 py-2 text-sm font-medium transition ${
+                      activeTab === 'proforma'
+                        ? 'text-neutral-900 border-b-2 border-neutral-900'
+                        : 'text-neutral-500 hover:text-neutral-700'
+                    }`}
+                  >
+                    Pro Forma
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+}

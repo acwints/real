@@ -34,7 +34,7 @@ export default function Contact() {
           </p>
         </div>
         
-        <form onSubmit={handleSubmit} className="space-y-10 max-w-2xl mx-auto">
+        <form onSubmit={handleSubmit} className="space-y-10 max-w-2xl mx-auto" suppressHydrationWarning>
           <div className="grid md:grid-cols-2 gap-10">
             <div>
               <label htmlFor="name" className="block text-xs uppercase tracking-widest mb-4 text-primary-foreground/70">
@@ -49,6 +49,7 @@ export default function Contact() {
                 onChange={handleChange}
                 className="w-full px-0 py-4 bg-transparent border-b border-primary-foreground/20 focus:border-primary-foreground focus:outline-none transition text-lg text-primary-foreground placeholder:text-primary-foreground/40"
                 placeholder=""
+                suppressHydrationWarning
               />
             </div>
             
@@ -65,6 +66,7 @@ export default function Contact() {
                 onChange={handleChange}
                 className="w-full px-0 py-4 bg-transparent border-b border-primary-foreground/20 focus:border-primary-foreground focus:outline-none transition text-lg text-primary-foreground placeholder:text-primary-foreground/40"
                 placeholder=""
+                suppressHydrationWarning
               />
             </div>
           </div>
@@ -81,6 +83,7 @@ export default function Contact() {
               onChange={handleChange}
               className="w-full px-0 py-4 bg-transparent border-b border-primary-foreground/20 focus:border-primary-foreground focus:outline-none transition text-lg text-primary-foreground placeholder:text-primary-foreground/40"
               placeholder=""
+              suppressHydrationWarning
             />
           </div>
           
@@ -97,6 +100,7 @@ export default function Contact() {
               onChange={handleChange}
               className="w-full px-0 py-4 bg-transparent border-b border-primary-foreground/20 focus:border-primary-foreground focus:outline-none resize-none text-lg text-primary-foreground placeholder:text-primary-foreground/40"
               placeholder=""
+              suppressHydrationWarning
             />
           </div>
           

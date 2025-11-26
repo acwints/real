@@ -29,7 +29,7 @@ export default function Vision() {
               <h3 className="text-3xl font-light text-foreground mb-8 tracking-wide">Residential</h3>
               <div className="space-y-6 text-muted-foreground leading-relaxed text-lg">
                 <p>
-                  The residential component will deliver between 750 and 1,200 housing units, with at least 50% designated as affordable 
+                  The residential component will deliver 144 housing units, with 50% designated as affordable 
                   in alignment with Assembly Bill 2923 and local agreements.
                 </p>
                 <p>
