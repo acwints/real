@@ -5,8 +5,66 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// System prompt with context about the financial model
-const systemPrompt = `You are a helpful financial analyst assistant for the Ashby BART Station mixed-use development project in Berkeley, California. 
+const SPREADSHEET_ID = '194zQSVqMnUEA9futs2MNPKg2r0g1CLoWdhkDhePOKvI';
+const PUBLISHED_SPREADSHEET_ID = '2PACX-1vSdWinzOWg7eHoMBw4QZcykfJzhN3NvWdqKTf77uq916_6JHxu6Vs_zq5Os5VtD9ywdryxEL_n9wZLi';
+
+// Sheet GIDs (you may need to update these based on your actual sheet tabs)
+const SHEET_GIDS: Record<string, string> = {
+  'proforma': '1321959354',
+  'groundlease': '0',
+  'data': '0',
+  'commercialcomp': '0',
+  'housingcomp': '0',
+};
+
+async function fetchSheetData(sheetName: string): Promise<string> {
+  try {
+    const gid = SHEET_GIDS[sheetName.toLowerCase()] || '0';
+    // Use CSV export for published spreadsheets
+    const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/export?format=csv&gid=${gid}`;
+    
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch ${sheetName}: ${response.statusText}`);
+    }
+
+    const csv = await response.text();
+    return csv;
+  } catch (error) {
+    console.error(`Error fetching ${sheetName}:`, error);
+    return `Error fetching ${sheetName} data: ${error instanceof Error ? error.message : 'Unknown error'}`;
+  }
+}
+
+async function getSpreadsheetContext(): Promise<string> {
+  try {
+    // Fetch key tabs
+    const [proformaData, dataTab] = await Promise.all([
+      fetchSheetData('proforma'),
+      fetchSheetData('data'),
+    ]);
+
+    return `Current spreadsheet data:
+
+PRO FORMA TAB (first 50 rows):
+${proformaData.split('\n').slice(0, 50).join('\n')}
+
+DATA TAB (first 30 rows):
+${dataTab.split('\n').slice(0, 30).join('\n')}
+
+Use this actual data from the spreadsheet to answer questions. If you need more specific data, mention which tab or cell range to check.`;
+  } catch (error) {
+    return 'Unable to fetch spreadsheet data. Please refer to the embedded spreadsheet for current values.';
+  }
+}
+
+// Base system prompt
+const baseSystemPrompt = `You are a helpful financial analyst assistant for the Ashby BART Station mixed-use development project in Berkeley, California. 
 
 Key Project Details:
 - 144 housing units (50% market rate, 50% affordable)
@@ -23,20 +81,7 @@ The spreadsheet contains multiple tabs:
 4. Commercial Comp: Comparable commercial/retail properties
 5. Housing Comp: Comparable residential properties
 
-Key Financial Metrics:
-- Market 1BR: 42 units at $2,750/month
-- Market 2BR: 21 units at $3,500/month  
-- Market 3BR: 9 units at $5,000/month
-- Affordable 1BR: 42 units at $900/month
-- Affordable 2BR: 21 units at $1,100/month
-- Affordable 3BR: 9 units at $1,500/month
-- Retail: 58,000 SF at $20/SF/year (with 10% vacancy)
-- Office: 76,000 SF at $20/SF/year (with 12% vacancy)
-- Operating Expense Ratio: 35%
-- Ground Lease: $50k/year during development, $1.05M/year post-completion
-- Rent Growth: 2% annually
-
-Answer questions about the financial model accurately and helpfully. If asked about specific numbers, refer to the model structure and provide context. If you don't have exact numbers, explain what information would be needed or where to find it in the model.`;
+Answer questions about the financial model using the ACTUAL DATA from the spreadsheet provided below. Always reference specific numbers from the spreadsheet data when answering.`;
 
 export async function POST(req: NextRequest) {
   try {
@@ -56,6 +101,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Fetch current spreadsheet data
+    const spreadsheetContext = await getSpreadsheetContext();
+    const systemPrompt = `${baseSystemPrompt}\n\n${spreadsheetContext}`;
+
     // Format messages for OpenAI API
     const formattedMessages = [
       { role: 'system', content: systemPrompt },
@@ -69,7 +118,7 @@ export async function POST(req: NextRequest) {
       model: 'gpt-4o-mini',
       messages: formattedMessages as any,
       temperature: 0.7,
-      max_tokens: 1000,
+      max_tokens: 2000, // Increased to handle spreadsheet data
     });
 
     const assistantMessage = completion.choices[0]?.message?.content || 'I apologize, but I could not generate a response.';
