@@ -15,14 +15,33 @@ export default function ModelChat() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (!messagesContainerRef.current) return;
+    
+    // Use requestAnimationFrame to ensure DOM has updated before scrolling
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (messagesContainerRef.current) {
+          messagesContainerRef.current.scrollTo({
+            top: messagesContainerRef.current.scrollHeight,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
   };
 
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    if (isExpanded && messages.length > 0) {
+      // Small delay to ensure message is rendered before scrolling
+      const timeoutId = setTimeout(() => {
+        scrollToBottom();
+      }, 100);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [messages, isExpanded]);
 
   // Focus input when expanded
   useEffect(() => {
@@ -51,16 +70,24 @@ export default function ModelChat() {
     const userMessage: Message = { role: 'user', content: input };
     const currentInput = input;
     setInput('');
+    const wasExpanded = isExpanded;
     setIsExpanded(true);
     setIsLoading(true);
     
     // Add user message immediately
     setMessages(prev => [...prev, userMessage]);
     
-    // Scroll to chat container smoothly
-    setTimeout(() => {
-      chatContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 50);
+    // Only scroll page if chat wasn't already expanded (first time opening)
+    if (!wasExpanded) {
+      // Use requestAnimationFrame for smoother transition
+      requestAnimationFrame(() => {
+        chatContainerRef.current?.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start',
+          inline: 'nearest'
+        });
+      });
+    }
 
     try {
       // Check if we're in static export mode (API routes don't work)
@@ -166,7 +193,7 @@ export default function ModelChat() {
           </div>
 
           {/* Messages */}
-          <div className="max-h-[400px] overflow-y-auto p-4 space-y-3 bg-white/95 backdrop-blur-sm">
+          <div ref={messagesContainerRef} className="max-h-[400px] overflow-y-auto p-4 space-y-3 bg-white/95 backdrop-blur-sm scroll-smooth">
             {messages.length === 0 && (
               <div className="text-center text-sm text-neutral-500 py-4">
                 Ask a question to get started

@@ -79,8 +79,20 @@ async function getSpreadsheetContext(): Promise<string> {
     console.log('Data tab first 200 chars:', dataTab.substring(0, 200));
 
     // Parse CSV to get meaningful rows (skip empty rows)
-    const proformaRows = proformaData.split('\n').filter(row => row.trim()).slice(0, 80);
-    const dataRows = dataTab.split('\n').filter(row => row.trim()).slice(0, 50);
+    const proformaRawRows = proformaData.split('\n').filter(row => row.trim()).slice(0, 80);
+    const dataRawRows = dataTab.split('\n').filter(row => row.trim()).slice(0, 50);
+
+    // Add row numbers to each row (spreadsheet row numbers, starting from 1)
+    // Row 1 is typically the header row
+    const proformaRows = proformaRawRows.map((row, index) => {
+      const spreadsheetRowNumber = index + 1;
+      return `Row ${spreadsheetRowNumber}: ${row}`;
+    });
+    
+    const dataRows = dataRawRows.map((row, index) => {
+      const spreadsheetRowNumber = index + 1;
+      return `Row ${spreadsheetRowNumber}: ${row}`;
+    });
 
     console.log('Pro Forma rows:', proformaRows.length);
     console.log('Data tab rows:', dataRows.length);
@@ -107,9 +119,12 @@ ${proformaRows.join('\n')}
 ` : ''}${hasDataTab ? `DATA TAB (first 50 rows):
 ${dataRows.join('\n')}
 
-` : ''}IMPORTANT: 
+` : ''}IMPORTANT ROW NUMBERING:
+- Row numbers shown above correspond to the ACTUAL spreadsheet row numbers (Row 1 is the header row)
+- When referencing data, use the EXACT row number shown in the prefix (e.g., "Row 77 shows NPV of -$26,400,882")
+- Row 1 is typically the header row, so data starts at Row 2
 - When asked about NPV, NOI, debt service, revenue, expenses, or any financial metric, you MUST use the exact values from the Pro Forma tab above
-- Reference specific row numbers and values (e.g., "Row 78 shows NPV of -$26,400,882")
+- Reference specific row numbers and values using the row numbers shown in the data above
 - Do NOT say "typically" or "would include" - use the ACTUAL numbers from the spreadsheet
 - If the data shows a specific value, use that value, not a generic description`;
   } catch (error) {
