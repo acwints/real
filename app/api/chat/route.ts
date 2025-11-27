@@ -56,15 +56,28 @@ async function getSpreadsheetContext(): Promise<string> {
       fetchSheetData('data'),
     ]);
 
+    // Debug logging
+    console.log('Pro Forma data length:', proformaData.length);
+    console.log('Data tab length:', dataTab.length);
+    console.log('Pro Forma first 200 chars:', proformaData.substring(0, 200));
+    console.log('Data tab first 200 chars:', dataTab.substring(0, 200));
+
     // Parse CSV to get meaningful rows (skip empty rows)
     const proformaRows = proformaData.split('\n').filter(row => row.trim()).slice(0, 80);
     const dataRows = dataTab.split('\n').filter(row => row.trim()).slice(0, 50);
+
+    console.log('Pro Forma rows:', proformaRows.length);
+    console.log('Data tab rows:', dataRows.length);
 
     // Check if we actually got data or just errors
     const hasProformaData = !proformaData.includes('Error fetching') && proformaRows.length > 5;
     const hasDataTab = !dataTab.includes('Error fetching') && dataRows.length > 5;
 
+    console.log('Has Pro Forma data:', hasProformaData);
+    console.log('Has Data tab:', hasDataTab);
+
     if (!hasProformaData && !hasDataTab) {
+      console.error('Failed to fetch spreadsheet data');
       return 'CRITICAL: Unable to fetch spreadsheet data. Please check the spreadsheet is published and accessible.';
     }
 
@@ -121,6 +134,9 @@ export async function POST(req: NextRequest) {
 
     // Fetch current spreadsheet data
     const spreadsheetContext = await getSpreadsheetContext();
+    console.log('Spreadsheet context length:', spreadsheetContext.length);
+    console.log('Spreadsheet context preview:', spreadsheetContext.substring(0, 500));
+    
     const systemPrompt = `${baseSystemPrompt}\n\n${spreadsheetContext}`;
 
     // Format messages for OpenAI API
