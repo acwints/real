@@ -20,20 +20,27 @@ const SHEET_GIDS: Record<string, string> = {
 async function fetchSheetData(sheetName: string): Promise<string> {
   try {
     const gid = SHEET_GIDS[sheetName.toLowerCase()] || '0';
-    // Use CSV export for published spreadsheets
+    // Use CSV export for published spreadsheets - follow redirects
     const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/export?format=csv&gid=${gid}`;
     
     const response = await fetch(url, {
       headers: {
-        'User-Agent': 'Mozilla/5.0',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
       },
+      redirect: 'follow', // Follow redirects
     });
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch ${sheetName}: ${response.statusText}`);
+      throw new Error(`Failed to fetch ${sheetName}: ${response.status} ${response.statusText}`);
     }
 
     const csv = await response.text();
+    
+    // Check if we got HTML instead of CSV (indicates an error)
+    if (csv.trim().startsWith('<')) {
+      throw new Error(`Got HTML response instead of CSV for ${sheetName}`);
+    }
+    
     return csv;
   } catch (error) {
     console.error(`Error fetching ${sheetName}:`, error);
@@ -53,15 +60,29 @@ async function getSpreadsheetContext(): Promise<string> {
     const proformaRows = proformaData.split('\n').filter(row => row.trim()).slice(0, 80);
     const dataRows = dataTab.split('\n').filter(row => row.trim()).slice(0, 50);
 
-    return `Current spreadsheet data from the Ashby BART financial model:
+    // Check if we actually got data or just errors
+    const hasProformaData = !proformaData.includes('Error fetching') && proformaRows.length > 5;
+    const hasDataTab = !dataTab.includes('Error fetching') && dataRows.length > 5;
 
-PRO FORMA TAB (rows 1-80):
+    if (!hasProformaData && !hasDataTab) {
+      return 'CRITICAL: Unable to fetch spreadsheet data. Please check the spreadsheet is published and accessible.';
+    }
+
+    return `CRITICAL INSTRUCTION: You MUST use the ACTUAL DATA below from the spreadsheet. Do NOT give generic answers. Reference specific numbers, cells, and values from the data.
+
+CURRENT SPREADSHEET DATA FROM ASHBY BART FINANCIAL MODEL:
+
+${hasProformaData ? `PRO FORMA TAB (first 80 rows):
 ${proformaRows.join('\n')}
 
-DATA TAB (rows 1-50):
+` : ''}${hasDataTab ? `DATA TAB (first 50 rows):
 ${dataRows.join('\n')}
 
-Use this ACTUAL DATA from the spreadsheet to answer questions. Reference specific numbers, formulas, and calculations from the spreadsheet. If asked about specific metrics (NPV, NOI, debt service, etc.), use the exact values from the Pro Forma tab above.`;
+` : ''}IMPORTANT: 
+- When asked about NPV, NOI, debt service, revenue, expenses, or any financial metric, you MUST use the exact values from the Pro Forma tab above
+- Reference specific row numbers and values (e.g., "Row 78 shows NPV of -$26,400,882")
+- Do NOT say "typically" or "would include" - use the ACTUAL numbers from the spreadsheet
+- If the data shows a specific value, use that value, not a generic description`;
   } catch (error) {
     console.error('Error fetching spreadsheet context:', error);
     return 'Unable to fetch spreadsheet data. Please refer to the embedded spreadsheet for current values.';
@@ -69,24 +90,16 @@ Use this ACTUAL DATA from the spreadsheet to answer questions. Reference specifi
 }
 
 // Base system prompt
-const baseSystemPrompt = `You are a helpful financial analyst assistant for the Ashby BART Station mixed-use development project in Berkeley, California. 
+const baseSystemPrompt = `You are a financial analyst assistant for the Ashby BART Station mixed-use development project. 
 
-Key Project Details:
+CRITICAL: You have access to the ACTUAL spreadsheet data below. You MUST use the exact numbers from the spreadsheet, not generic descriptions. When asked about any financial metric, quote the specific value from the Pro Forma tab.
+
+Project Details:
 - 144 housing units (50% market rate, 50% affordable)
-- 58,000 SF of retail space
-- 76,000 SF of office space
-- 4.4 acres at Ashby BART Station
-- R-BMU zoning
+- 58,000 SF retail, 76,000 SF office
+- Located at Ashby BART Station, Berkeley
 
-Financial Model Structure:
-The spreadsheet contains multiple tabs:
-1. Pro Forma: 10-year financial projections including revenue, expenses, NOI, debt service, and cash flow
-2. Ground Lease: Ground lease terms and calculations
-3. Data: Base assumptions including unit mix, rent schedules, vacancy rates, operating expenses
-4. Commercial Comp: Comparable commercial/retail properties
-5. Housing Comp: Comparable residential properties
-
-Answer questions about the financial model using the ACTUAL DATA from the spreadsheet provided below. Always reference specific numbers from the spreadsheet data when answering.`;
+The spreadsheet data is provided below. Use it to answer all questions with specific numbers and values.`;
 
 export async function POST(req: NextRequest) {
   try {
