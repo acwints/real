@@ -2,12 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import ModelChat from '../components/ModelChat';
-import ProFormaContent from '../components/ProFormaContent';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 export default function ModelPage() {
-  const [activeTab, setActiveTab] = useState<'spreadsheet' | 'proforma'>('spreadsheet');
   const [isLoading, setIsLoading] = useState(true);
   const spreadsheetId = '194zQSVqMnUEA9futs2MNPKg2r0g1CLoWdhkDhePOKvI';
   const embedUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/preview`;
@@ -42,68 +40,36 @@ export default function ModelPage() {
         </div>
       </section>
 
-      {/* Tabs - Top */}
-      <section className="bg-white border-b border-neutral-200 sticky top-[73px] z-40">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex gap-1">
-            <button
-              onClick={() => setActiveTab('spreadsheet')}
-              className={`px-6 py-3 text-sm font-medium transition ${
-                activeTab === 'spreadsheet'
-                  ? 'text-neutral-900 border-b-2 border-neutral-900'
-                  : 'text-neutral-500 hover:text-neutral-700'
-              }`}
-            >
-              Spreadsheet
-            </button>
-            <button
-              onClick={() => setActiveTab('proforma')}
-              className={`px-6 py-3 text-sm font-medium transition ${
-                activeTab === 'proforma'
-                  ? 'text-neutral-900 border-b-2 border-neutral-900'
-                  : 'text-neutral-500 hover:text-neutral-700'
-              }`}
-            >
-              Pro Forma
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Tab Content */}
+      {/* Spreadsheet */}
       <section className="py-8 bg-neutral-50 min-h-[calc(100vh-400px)]">
         <div className="max-w-7xl mx-auto px-6">
-          {activeTab === 'spreadsheet' && (
-            <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-neutral-200">
-              <div className="p-2 bg-neutral-50">
-                <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-neutral-200">
-                  {isLoading && (
-                    <div className="h-[800px] flex items-center justify-center bg-neutral-50">
-                      <div className="text-center">
-                        <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-neutral-900 mb-4"></div>
-                        <p className="text-neutral-600">Loading spreadsheet...</p>
-                      </div>
+          <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-neutral-200">
+            <div className="p-2 bg-neutral-50">
+              <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-neutral-200">
+                {isLoading && (
+                  <div className="h-[800px] flex items-center justify-center bg-neutral-50">
+                    <div className="text-center">
+                      <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-neutral-900 mb-4"></div>
+                      <p className="text-neutral-600">Loading spreadsheet...</p>
                     </div>
-                  )}
-                  <div className={`w-full ${isLoading ? 'hidden' : 'block'}`}>
-                    <iframe
-                      src={embedUrl}
-                      width="100%"
-                      height="800"
-                      frameBorder="0"
-                      className="w-full border-0"
-                      style={{ minHeight: '800px', display: 'block' }}
-                      allowFullScreen
-                      title="Ashby BART Financial Model"
-                      onLoad={() => setIsLoading(false)}
-                    />
                   </div>
+                )}
+                <div className={`w-full ${isLoading ? 'hidden' : 'block'}`}>
+                  <iframe
+                    src={embedUrl}
+                    width="100%"
+                    height="800"
+                    frameBorder="0"
+                    className="w-full border-0"
+                    style={{ minHeight: '800px', display: 'block' }}
+                    allowFullScreen
+                    title="Ashby BART Financial Model"
+                    onLoad={() => setIsLoading(false)}
+                  />
                 </div>
               </div>
             </div>
-          )}
-
-          {activeTab === 'proforma' && <ProFormaContent />}
+          </div>
         </div>
       </section>
 
