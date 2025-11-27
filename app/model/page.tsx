@@ -2,12 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import ModelChat from '../components/ModelChat';
-import ProFormaContent from '../components/ProFormaContent';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 export default function ModelPage() {
-  const [activeView, setActiveView] = useState<'spreadsheet' | 'formatted'>('spreadsheet');
   const [isLoading, setIsLoading] = useState(true);
   const spreadsheetId = '194zQSVqMnUEA9futs2MNPKg2r0g1CLoWdhkDhePOKvI';
   // Use pubhtml endpoint with headers=true to show row/column headers
@@ -44,92 +42,50 @@ export default function ModelPage() {
         </div>
       </section>
 
-      {/* View Toggle */}
-      <section className="bg-white border-b border-neutral-200 sticky top-[73px] z-40">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex gap-1">
-            <button
-              onClick={() => setActiveView('spreadsheet')}
-              className={`px-6 py-3 text-sm font-medium transition ${
-                activeView === 'spreadsheet'
-                  ? 'text-neutral-900 border-b-2 border-neutral-900'
-                  : 'text-neutral-500 hover:text-neutral-700'
-              }`}
-            >
-              Spreadsheet
-            </button>
-            <button
-              onClick={() => setActiveView('formatted')}
-              className={`px-6 py-3 text-sm font-medium transition ${
-                activeView === 'formatted'
-                  ? 'text-neutral-900 border-b-2 border-neutral-900'
-                  : 'text-neutral-500 hover:text-neutral-700'
-              }`}
-            >
-              Formatted View
-            </button>
-          </div>
-        </div>
-      </section>
-
       {/* Content */}
       <section className="py-8 bg-neutral-50 min-h-[calc(100vh-400px)]">
         <div className="max-w-7xl mx-auto px-6">
-          {activeView === 'spreadsheet' && (
-            <>
-              {/* Spreadsheet Header */}
-              <div className="mb-4">
-                <h2 className="text-2xl font-light text-neutral-900">
-                  <a 
-                    href={`https://docs.google.com/spreadsheets/d/${spreadsheetId}/edit`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-neutral-600 transition underline decoration-neutral-300 hover:decoration-neutral-600"
-                  >
-                    Pro Forma Ashby BART
-                  </a>
-                </h2>
-              </div>
-              
-              <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-neutral-200">
-              <div className="p-2 bg-neutral-50">
-                <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-neutral-200">
-                  {isLoading && (
-                    <div className="h-[800px] flex items-center justify-center bg-neutral-50">
-                      <div className="text-center">
-                        <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-neutral-900 mb-4"></div>
-                        <p className="text-neutral-600">Loading spreadsheet...</p>
-                      </div>
+          {/* Spreadsheet Header */}
+          <div className="mb-4">
+            <h2 className="text-2xl font-light text-neutral-900">
+              <a 
+                href={`https://docs.google.com/spreadsheets/d/${spreadsheetId}/edit`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-neutral-600 transition underline decoration-neutral-300 hover:decoration-neutral-600"
+              >
+                Pro Forma Ashby BART
+              </a>
+            </h2>
+          </div>
+          
+          <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-neutral-200">
+            <div className="p-2 bg-neutral-50">
+              <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-neutral-200">
+                {isLoading && (
+                  <div className="h-[800px] flex items-center justify-center bg-neutral-50">
+                    <div className="text-center">
+                      <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-neutral-900 mb-4"></div>
+                      <p className="text-neutral-600">Loading spreadsheet...</p>
                     </div>
-                  )}
-                  <div className={`w-full ${isLoading ? 'hidden' : 'block'}`}>
-                    <iframe
-                      src={embedUrl}
-                      width="100%"
-                      height="800"
-                      frameBorder="0"
-                      className="w-full border-0"
-                      style={{ minHeight: '800px', display: 'block' }}
-                      allowFullScreen
-                      title="Ashby BART Financial Model"
-                      onLoad={() => setIsLoading(false)}
-                    />
                   </div>
+                )}
+                <div className={`w-full ${isLoading ? 'hidden' : 'block'}`}>
+                  <iframe
+                    src={embedUrl}
+                    width="100%"
+                    height="800"
+                    frameBorder="0"
+                    className="w-full border-0"
+                    style={{ minHeight: '800px', display: 'block' }}
+                    allowFullScreen
+                    title="Ashby BART Financial Model"
+                    onLoad={() => setIsLoading(false)}
+                  />
                 </div>
               </div>
             </div>
-            </>
-          )}
-
-          {activeView === 'formatted' && (
-            <>
-              {/* Formatted View Header */}
-              <div className="mb-4">
-                <h2 className="text-2xl font-light text-neutral-900">Pro Forma Ashby BART</h2>
-              </div>
-              <ProFormaContent />
-            </>
-          )}
+          </div>
         </div>
       </section>
 
