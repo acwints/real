@@ -13,6 +13,8 @@ export default function ModelChat() {
   const [isLoading, setIsLoading] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -22,15 +24,43 @@ export default function ModelChat() {
     scrollToBottom();
   }, [messages]);
 
+  // Focus input when expanded
+  useEffect(() => {
+    if (isExpanded && inputRef.current) {
+      // Small delay to ensure DOM is ready
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+    }
+  }, [isExpanded]);
+
+  // Keep input focused after message is added
+  useEffect(() => {
+    if (messages.length > 0 && inputRef.current && !isLoading) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+    }
+  }, [messages.length, isLoading]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     if (!input.trim() || isLoading) return;
 
     const userMessage: Message = { role: 'user', content: input };
-    setMessages(prev => [...prev, userMessage]);
+    const currentInput = input;
     setInput('');
-    setIsLoading(true);
     setIsExpanded(true);
+    setIsLoading(true);
+    
+    // Add user message immediately
+    setMessages(prev => [...prev, userMessage]);
+    
+    // Scroll to chat container smoothly
+    setTimeout(() => {
+      chatContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 50);
 
     try {
       // Check if we're in static export mode (API routes don't work)
@@ -74,26 +104,32 @@ export default function ModelChat() {
       setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
+      // Refocus input after response
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
     }
   };
 
   return (
-    <div className="bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 overflow-hidden">
+    <div ref={chatContainerRef} className="bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 overflow-hidden">
       {/* Compact Search Box */}
       {!isExpanded && (
-        <form onSubmit={handleSubmit} className="p-3">
+        <form onSubmit={handleSubmit} className="p-3" onFocus={(e) => e.stopPropagation()}>
           <div className="flex gap-2 items-center">
             <div className="flex-1 relative">
               <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
               <input
+                ref={inputRef}
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask a question about the financial model..."
                 className="w-full pl-10 pr-4 py-2.5 bg-white/90 backdrop-blur-sm border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 text-neutral-900 placeholder-neutral-500"
                 disabled={isLoading}
+                autoFocus
               />
             </div>
             <button
@@ -172,15 +208,17 @@ export default function ModelChat() {
           </div>
 
           {/* Input */}
-          <form onSubmit={handleSubmit} className="border-t border-white/20 p-3 bg-white/10 backdrop-blur-sm">
+          <form onSubmit={handleSubmit} className="border-t border-white/20 p-3 bg-white/10 backdrop-blur-sm" onFocus={(e) => e.stopPropagation()}>
             <div className="flex gap-2">
               <input
+                ref={inputRef}
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask a follow-up question..."
                 className="flex-1 px-4 py-2 bg-white/90 backdrop-blur-sm border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 text-neutral-900 placeholder-neutral-500 text-sm"
                 disabled={isLoading}
+                autoFocus
               />
               <button
                 type="submit"
