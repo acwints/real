@@ -116,6 +116,7 @@ export default function ModelPage() {
                 </div>
               </div>
             </div>
+            </>
           )}
 
           {activeView === 'formatted' && (
