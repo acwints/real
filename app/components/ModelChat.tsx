@@ -33,6 +33,14 @@ export default function ModelChat() {
     setIsExpanded(true);
 
     try {
+      // Check if we're in static export mode (API routes don't work)
+      const useStaticExport = process.env.NEXT_PUBLIC_USE_STATIC_EXPORT === 'true';
+      const isProd = process.env.NODE_ENV === 'production';
+      
+      if (isProd && useStaticExport) {
+        throw new Error('API routes not available in static export mode');
+      }
+
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
@@ -47,7 +55,8 @@ export default function ModelChat() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to get response');
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || 'Failed to get response');
       }
 
       const data = await response.json();
@@ -56,11 +65,11 @@ export default function ModelChat() {
         content: data.message || 'I apologize, but I encountered an error processing your request.'
       };
       setMessages(prev => [...prev, assistantMessage]);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error:', error);
       const errorMessage: Message = {
         role: 'assistant',
-        content: 'I apologize, but I\'m having trouble connecting right now. Please make sure the API is configured correctly.'
+        content: 'The chat feature requires a server environment to work. API routes are not available in static export mode (GitHub Pages). To use the chat feature, please deploy to a platform that supports API routes like Vercel or Netlify, or run the development server locally.'
       };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
