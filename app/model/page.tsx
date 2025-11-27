@@ -10,7 +10,9 @@ export default function ModelPage() {
   const [activeView, setActiveView] = useState<'spreadsheet' | 'formatted'>('spreadsheet');
   const [isLoading, setIsLoading] = useState(true);
   const spreadsheetId = '194zQSVqMnUEA9futs2MNPKg2r0g1CLoWdhkDhePOKvI';
-  const embedUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/preview`;
+  // Use pubhtml endpoint with headers=true to show row/column headers
+  // Note: Sheet must be published (File > Share > Publish to web)
+  const embedUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/pubhtml?widget=true&headers=true&chrome=false`;
 
   useEffect(() => {
     const timer = setTimeout(() => {
