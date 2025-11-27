@@ -20,28 +20,44 @@ const SHEET_GIDS: Record<string, string> = {
 async function fetchSheetData(sheetName: string): Promise<string> {
   try {
     const gid = SHEET_GIDS[sheetName.toLowerCase()] || '0';
-    // Use CSV export for published spreadsheets - follow redirects
+    // Use CSV export - need to follow redirects manually if needed
     const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/export?format=csv&gid=${gid}`;
     
-    const response = await fetch(url, {
+    let response = await fetch(url, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
       },
-      redirect: 'follow', // Follow redirects
+      redirect: 'follow',
     });
+
+    let text = await response.text();
+    
+    // If we got HTML redirect, try to extract the redirect URL and follow it
+    if (text.trim().startsWith('<') && text.includes('HREF=')) {
+      const hrefMatch = text.match(/HREF="([^"]+)"/i);
+      if (hrefMatch && hrefMatch[1]) {
+        const redirectUrl = hrefMatch[1].replace(/&amp;/g, '&');
+        console.log(`Following redirect for ${sheetName}:`, redirectUrl);
+        response = await fetch(redirectUrl, {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+          },
+          redirect: 'follow',
+        });
+        text = await response.text();
+      }
+    }
+
+    // Check if we still got HTML instead of CSV
+    if (text.trim().startsWith('<')) {
+      throw new Error(`Got HTML response instead of CSV for ${sheetName}. The spreadsheet may require authentication or not be published.`);
+    }
 
     if (!response.ok) {
       throw new Error(`Failed to fetch ${sheetName}: ${response.status} ${response.statusText}`);
     }
-
-    const csv = await response.text();
     
-    // Check if we got HTML instead of CSV (indicates an error)
-    if (csv.trim().startsWith('<')) {
-      throw new Error(`Got HTML response instead of CSV for ${sheetName}`);
-    }
-    
-    return csv;
+    return text;
   } catch (error) {
     console.error(`Error fetching ${sheetName}:`, error);
     return `Error fetching ${sheetName} data: ${error instanceof Error ? error.message : 'Unknown error'}`;
