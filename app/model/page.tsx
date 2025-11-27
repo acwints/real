@@ -74,7 +74,22 @@ export default function ModelPage() {
       <section className="py-8 bg-neutral-50 min-h-[calc(100vh-400px)]">
         <div className="max-w-7xl mx-auto px-6">
           {activeView === 'spreadsheet' && (
-            <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-neutral-200">
+            <>
+              {/* Spreadsheet Header */}
+              <div className="mb-4">
+                <h2 className="text-2xl font-light text-neutral-900">
+                  <a 
+                    href={`https://docs.google.com/spreadsheets/d/${spreadsheetId}/edit`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-neutral-600 transition underline decoration-neutral-300 hover:decoration-neutral-600"
+                  >
+                    Pro Forma Ashby BART
+                  </a>
+                </h2>
+              </div>
+              
+              <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-neutral-200">
               <div className="p-2 bg-neutral-50">
                 <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-neutral-200">
                   {isLoading && (
@@ -103,7 +118,15 @@ export default function ModelPage() {
             </div>
           )}
 
-          {activeView === 'formatted' && <ProFormaContent />}
+          {activeView === 'formatted' && (
+            <>
+              {/* Formatted View Header */}
+              <div className="mb-4">
+                <h2 className="text-2xl font-light text-neutral-900">Pro Forma Ashby BART</h2>
+              </div>
+              <ProFormaContent />
+            </>
+          )}
         </div>
       </section>
 
