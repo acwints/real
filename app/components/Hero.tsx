@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden pt-24">
       <div className="absolute inset-0 bg-gradient-to-br from-secondary via-background to-secondary/50">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0gNDAgMCBMIDAgMCAwIDQwIiBmaWxsPSJub25lIiBzdHJva2U9ImhzbGEoMCwgMCUsIDEwMCUsIDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
       </div>
@@ -8,8 +8,8 @@ export default function Hero() {
       
       <div className="relative z-10 text-center text-primary-foreground max-w-6xl mx-auto px-6">
         <p className="text-sm uppercase tracking-[0.3em] mb-8 text-primary-foreground/70">Berkeley, California</p>
-        <h1 className="text-6xl md:text-8xl font-light mb-12 leading-tight tracking-tight">
-          Ashby BART<br />Station
+        <h1 className="text-6xl md:text-8xl font-light mb-12 leading-tight tracking-tight whitespace-nowrap">
+          Ashby BART Station
         </h1>
         <div className="w-24 h-px bg-primary-foreground/40 mx-auto mb-12"></div>
         <p className="text-xl md:text-2xl font-light text-secondary-foreground max-w-3xl mx-auto leading-relaxed mb-20">
