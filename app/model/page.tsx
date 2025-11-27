@@ -25,7 +25,6 @@ export default function ModelPage() {
       {/* Hero */}
       <section className="pt-24 pb-6 bg-neutral-900 text-white">
         <div className="max-w-7xl mx-auto px-6">
-          <p className="text-sm uppercase tracking-[0.3em] mb-2 text-neutral-400">Financial Model</p>
           <h1 className="text-4xl md:text-5xl font-light mb-3 leading-tight">
             Interactive Financial Model
           </h1>
