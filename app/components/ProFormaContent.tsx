@@ -154,7 +154,7 @@ export default function ProFormaContent() {
               </ul>
               <p className="mt-3"><strong>2. Affordable Housing Financing Not Applied:</strong> LIHTC equity ($11M), tax-exempt bonds ($9M), and soft loans ($5M) totaling $25M should reduce debt/equity needs but aren't reflected in cash flows.</p>
               <p><strong>3. Ground Lease Impact:</strong> $1.05M annual ground lease represents ~75% of stabilized NOI, significantly impacting returns.</p>
-              <p><strong>4. Current NPV:</strong> <span className="font-bold text-red-900">-${Math.abs(npv).toLocaleString()}</span> - Project is not financially viable as modeled.</p>
+              <p><strong>4. Current NPV:</strong> <span className="font-bold text-red-900">-${(Math.abs(npv) / 1000000).toFixed(1)}M</span> - Project is not financially viable as modeled.</p>
             </div>
           </div>
         </div>
@@ -235,7 +235,7 @@ export default function ProFormaContent() {
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Market Residential Vacancy Rate</td>
-                  <td colSpan={10} className="p-3 text-right border border-neutral-300">5%</td>
+                  <td colSpan={10} className="p-3 text-right border border-neutral-300">5.0%</td>
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Market Residential Vacancy Amount</td>
@@ -304,7 +304,7 @@ export default function ProFormaContent() {
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Affordable Residential Vacancy Rate</td>
-                  <td colSpan={10} className="p-3 text-right border border-neutral-300">5%</td>
+                  <td colSpan={10} className="p-3 text-right border border-neutral-300">5.0%</td>
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Affordable Residential Vacancy Amount</td>
@@ -332,11 +332,11 @@ export default function ProFormaContent() {
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Retail SF</td>
-                  <td colSpan={10} className="p-3 text-right border border-neutral-300">{retailSF.toLocaleString()}</td>
+                  <td colSpan={10} className="p-3 text-right border border-neutral-300">{retailSF.toLocaleString()} SF</td>
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Retail Rent per SF (Annual)</td>
-                  <td colSpan={10} className="p-3 text-right border border-neutral-300">${retailRentPerSF}</td>
+                  <td colSpan={10} className="p-3 text-right border border-neutral-300">${retailRentPerSF}/SF</td>
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Retail GPR (Annual)</td>
@@ -346,7 +346,7 @@ export default function ProFormaContent() {
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Retail Vacancy Rate</td>
-                  <td colSpan={10} className="p-3 text-right border border-neutral-300">10%</td>
+                  <td colSpan={10} className="p-3 text-right border border-neutral-300">10.0%</td>
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Retail Vacancy Amount</td>
@@ -367,11 +367,11 @@ export default function ProFormaContent() {
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Office SF</td>
-                  <td colSpan={10} className="p-3 text-right border border-neutral-300">{officeSF.toLocaleString()}</td>
+                  <td colSpan={10} className="p-3 text-right border border-neutral-300">{officeSF.toLocaleString()} SF</td>
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Office Rent per SF (Annual)</td>
-                  <td colSpan={10} className="p-3 text-right border border-neutral-300">${officeRentPerSF}</td>
+                  <td colSpan={10} className="p-3 text-right border border-neutral-300">${officeRentPerSF}/SF</td>
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Office GPR (Annual)</td>
@@ -381,7 +381,7 @@ export default function ProFormaContent() {
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Office Vacancy Rate</td>
-                  <td colSpan={10} className="p-3 text-right border border-neutral-300">12%</td>
+                  <td colSpan={10} className="p-3 text-right border border-neutral-300">12.0%</td>
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Office Vacancy Amount</td>
@@ -405,7 +405,7 @@ export default function ProFormaContent() {
 
                 <tr>
                   <td className="p-3 border border-neutral-300">Operating Expense Ratio</td>
-                  <td colSpan={10} className="p-3 text-right border border-neutral-300">35%</td>
+                  <td colSpan={10} className="p-3 text-right border border-neutral-300">35.0%</td>
                 </tr>
                 <tr>
                   <td className="p-3 border border-neutral-300">Operating Expenses</td>
@@ -423,7 +423,7 @@ export default function ProFormaContent() {
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Post-Completion Base Ground Rent (Year 1 Ops)</td>
-                  <td colSpan={10} className="p-3 text-right border border-neutral-300">$1,054,152</td>
+                  <td colSpan={10} className="p-3 text-right border border-neutral-300">$1.05M</td>
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Ground Lease Expense (Annual)</td>
@@ -441,8 +441,8 @@ export default function ProFormaContent() {
 
                 <tr className="bg-red-50">
                   <td className="p-3 border border-neutral-300">Debt Service (Interest-Only)</td>
-                  {years.map(() => (
-                    <td key={Math.random()} className="p-3 text-right border border-neutral-300 font-semibold text-red-700">${debtService.toLocaleString()}</td>
+                  {years.map((_, i) => (
+                    <td key={i} className="p-3 text-right border border-neutral-300 font-semibold text-red-700">${(debtService / 1000000).toFixed(2)}M</td>
                   ))}
                 </tr>
 
@@ -454,10 +454,10 @@ export default function ProFormaContent() {
                 </tr>
 
                 <tr className="bg-neutral-50">
-                  <td className="p-3 border border-neutral-300">Terminal Value (Year 10 Only)</td>
+                  <td className="p-3 border border-neutral-300">Terminal Value (Year 10 Only, 5.5% Cap Rate)</td>
                   {years.map((year, i) => (
                     <td key={i} className="p-3 text-right border border-neutral-300">
-                      {i === 9 ? `$${terminalValue.toLocaleString()}` : '-'}
+                      {i === 9 ? `$${(terminalValue / 1000000).toFixed(1)}M` : '-'}
                     </td>
                   ))}
                 </tr>
@@ -470,7 +470,7 @@ export default function ProFormaContent() {
                 </tr>
 
                 <tr>
-                  <td className="p-3 border border-neutral-300">Discount Factor (2%)</td>
+                  <td className="p-3 border border-neutral-300">Discount Factor (2.0%)</td>
                   {discountFactors.map((val, i) => (
                     <td key={i} className="p-3 text-right border border-neutral-300">{val.toFixed(4)}</td>
                   ))}
@@ -486,7 +486,7 @@ export default function ProFormaContent() {
                 <tr className="bg-neutral-900 text-white">
                   <td className="p-4 font-bold text-lg border border-neutral-700">Net Present Value (NPV)</td>
                   <td colSpan={10} className="p-4 text-right font-bold text-lg border border-neutral-700">
-                    ${npv.toLocaleString()}
+                    ${(npv / 1000000).toFixed(1)}M
                   </td>
                 </tr>
               </tbody>
@@ -511,22 +511,22 @@ export default function ProFormaContent() {
               <tbody>
                 <tr className="border-b border-neutral-200">
                   <td className="p-4 font-semibold">LIHTC Equity</td>
-                  <td className="p-4 text-right">$11,000,000</td>
+                  <td className="p-4 text-right">$11.0M</td>
                   <td className="p-4 text-neutral-600">Assumes ~40% of affordable development cost covered through 4% LIHTC equity; typical range is 30–70% depending on basis and credit pricing.</td>
                 </tr>
                 <tr className="border-b border-neutral-200">
                   <td className="p-4 font-semibold">Tax-Exempt Bond Financing</td>
-                  <td className="p-4 text-right">$9,000,000</td>
+                  <td className="p-4 text-right">$9.0M</td>
                   <td className="p-4 text-neutral-600">Sized to meet the 50% test for 4% credits; provides below-market construction and permanent debt for the affordable portion.</td>
                 </tr>
                 <tr className="border-b border-neutral-200">
                   <td className="p-4 font-semibold">Soft/Public Loans</td>
-                  <td className="p-4 text-right">$5,000,000</td>
-                  <td className="p-4 text-neutral-600">Assumes ~$90k per affordable unit from city/county/state programs; typical range is $50k–$150k per unit.</td>
+                  <td className="p-4 text-right">$5.0M</td>
+                  <td className="p-4 text-neutral-600">Assumes ~$90K per affordable unit from city/county/state programs; typical range is $50K–$150K per unit.</td>
                 </tr>
                 <tr className="border-b border-neutral-200">
                   <td className="p-4 font-semibold">Operating Subsidies (if needed)</td>
-                  <td className="p-4 text-right">$0–$300,000/yr</td>
+                  <td className="p-4 text-right">$0–$300K/yr</td>
                   <td className="p-4 text-neutral-600">Required only if including 30% AMI/special-needs units; provides rental subsidies to maintain operations.</td>
                 </tr>
                 <tr className="border-b border-neutral-200">
@@ -536,17 +536,17 @@ export default function ProFormaContent() {
                 </tr>
                 <tr className="border-b border-neutral-200">
                   <td className="p-4 font-semibold">Replacement Reserves</td>
-                  <td className="p-4 text-right">$350/unit/year</td>
+                  <td className="p-4 text-right">$350/unit/yr</td>
                   <td className="p-4 text-neutral-600">Standard LIHTC reserve requirement; ensures long-term capital maintenance.</td>
                 </tr>
                 <tr className="border-b border-neutral-200">
                   <td className="p-4 font-semibold">Compliance & Monitoring Fees</td>
-                  <td className="p-4 text-right">$30,000/year</td>
-                  <td className="p-4 text-neutral-600">Annual reporting, audits, and monitoring fees required by investors and regulatory agencies; typical range $20k–$40k.</td>
+                  <td className="p-4 text-right">$30K/yr</td>
+                  <td className="p-4 text-neutral-600">Annual reporting, audits, and monitoring fees required by investors and regulatory agencies; typical range $20K–$40K.</td>
                 </tr>
                 <tr className="border-b border-neutral-200">
                   <td className="p-4 font-semibold">Developer Fee Limits</td>
-                  <td className="p-4 text-right">$2,000,000 cap</td>
+                  <td className="p-4 text-right">$2.0M cap</td>
                   <td className="p-4 text-neutral-600">LIHTC rules cap eligible developer fee and often require deferral; amount depends on basis and program rules.</td>
                 </tr>
                 <tr className="border-b border-neutral-200">
