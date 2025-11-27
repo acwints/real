@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -211,9 +212,28 @@ export default function ModelChat() {
                       : 'bg-white text-neutral-900 border border-neutral-200'
                   }`}
                 >
-                  <div className="leading-relaxed whitespace-pre-wrap">
-                    {message.content}
-                  </div>
+                  {message.role === 'assistant' ? (
+                    <div className="leading-relaxed markdown-content">
+                      <ReactMarkdown
+                        components={{
+                          p: ({ children }) => <p className="my-2 last:my-0">{children}</p>,
+                          strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+                          em: ({ children }) => <em className="italic">{children}</em>,
+                          ul: ({ children }) => <ul className="my-2 ml-4 list-disc">{children}</ul>,
+                          ol: ({ children }) => <ol className="my-2 ml-4 list-decimal">{children}</ol>,
+                          li: ({ children }) => <li className="my-1">{children}</li>,
+                          code: ({ children }) => <code className="bg-neutral-100 px-1.5 py-0.5 rounded text-xs font-mono">{children}</code>,
+                          pre: ({ children }) => <pre className="bg-neutral-100 p-2 rounded my-2 overflow-x-auto">{children}</pre>,
+                        }}
+                      >
+                        {message.content}
+                      </ReactMarkdown>
+                    </div>
+                  ) : (
+                    <div className="leading-relaxed whitespace-pre-wrap">
+                      {message.content}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
