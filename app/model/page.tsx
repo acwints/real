@@ -8,9 +8,9 @@ import Footer from '../components/Footer';
 export default function ModelPage() {
   const [isLoading, setIsLoading] = useState(true);
   const spreadsheetId = '194zQSVqMnUEA9futs2MNPKg2r0g1CLoWdhkDhePOKvI';
-  // Using preview endpoint - works without publishing but doesn't support headers
-  // To show headers, use pubhtml endpoint but sheet must be published first
-  const embedUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/preview`;
+  // Using pubhtml endpoint with headers=true to show row/column headers
+  // Sheet is now published (File > Share > Publish to web)
+  const embedUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/pubhtml?widget=true&headers=true&chrome=false`;
 
   useEffect(() => {
     const timer = setTimeout(() => {
