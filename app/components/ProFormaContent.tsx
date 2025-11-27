@@ -175,9 +175,9 @@ export default function ProFormaContent() {
               </thead>
               <tbody>
                 <tr className="bg-neutral-50">
-                  <td className="p-3 font-semibold border border-neutral-300">Growth Factor</td>
+                  <td className="p-3 font-semibold border border-neutral-300">Growth Rate</td>
                   {growthFactors.map((gf, i) => (
-                    <td key={i} className="p-3 text-right border border-neutral-300">{gf.toFixed(4)}</td>
+                    <td key={i} className="p-3 text-right border border-neutral-300">{((gf - 1) * 100).toFixed(2)}%</td>
                   ))}
                 </tr>
                 
@@ -472,7 +472,7 @@ export default function ProFormaContent() {
                 <tr>
                   <td className="p-3 border border-neutral-300">Discount Factor (2.0%)</td>
                   {discountFactors.map((val, i) => (
-                    <td key={i} className="p-3 text-right border border-neutral-300">{val.toFixed(4)}</td>
+                    <td key={i} className="p-3 text-right border border-neutral-300">{(val * 100).toFixed(2)}%</td>
                   ))}
                 </tr>
 
