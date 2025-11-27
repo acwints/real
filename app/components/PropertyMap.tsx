@@ -92,11 +92,10 @@ export default function PropertyMap() {
   const [defaultIcon, setDefaultIcon] = useState<any>(null);
   const [isClient, setIsClient] = useState(false);
 
-  // Fix Leaflet icon issue and load CSS, create custom icons
+  // Fix Leaflet icon issue and create custom icons
   useEffect(() => {
     setIsClient(true);
     if (typeof window !== 'undefined') {
-      import('leaflet/dist/leaflet.css');
       import('leaflet').then((L) => {
         delete (L.default.Icon.Default.prototype as any)._getIconUrl;
         

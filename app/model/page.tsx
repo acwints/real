@@ -102,34 +102,32 @@ export default function ModelPage() {
           {activeTab === 'proforma' && <ProFormaContent />}
           
           {/* Tabs - Bottom */}
-          {activeTab === 'spreadsheet' && (
-            <div className="mt-6 bg-white border-t border-neutral-200">
-              <div className="max-w-7xl mx-auto px-6">
-                <div className="flex gap-1 py-3">
-                  <button
-                    onClick={() => setActiveTab('spreadsheet')}
-                    className={`px-6 py-2 text-sm font-medium transition ${
-                      activeTab === 'spreadsheet'
-                        ? 'text-neutral-900 border-b-2 border-neutral-900'
-                        : 'text-neutral-500 hover:text-neutral-700'
-                    }`}
-                  >
-                    Spreadsheet
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('proforma')}
-                    className={`px-6 py-2 text-sm font-medium transition ${
-                      activeTab === 'proforma'
-                        ? 'text-neutral-900 border-b-2 border-neutral-900'
-                        : 'text-neutral-500 hover:text-neutral-700'
-                    }`}
-                  >
-                    Pro Forma
-                  </button>
-                </div>
+          <div className="mt-6 bg-white border-t border-neutral-200">
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="flex gap-1 py-3">
+                <button
+                  onClick={() => setActiveTab('spreadsheet')}
+                  className={`px-6 py-2 text-sm font-medium transition ${
+                    activeTab === 'spreadsheet'
+                      ? 'text-neutral-900 border-b-2 border-neutral-900'
+                      : 'text-neutral-500 hover:text-neutral-700'
+                  }`}
+                >
+                  Spreadsheet
+                </button>
+                <button
+                  onClick={() => setActiveTab('proforma')}
+                  className={`px-6 py-2 text-sm font-medium transition ${
+                    activeTab === 'proforma'
+                      ? 'text-neutral-900 border-b-2 border-neutral-900'
+                      : 'text-neutral-500 hover:text-neutral-700'
+                  }`}
+                >
+                  Pro Forma
+                </button>
               </div>
             </div>
-          )}
+          </div>
         </div>
       </section>
 
