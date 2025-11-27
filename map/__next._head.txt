@@ -3,6 +3,6 @@
 4:I[97367,["/real/_next/static/chunks/ff1a16fafef87110.js","/real/_next/static/chunks/926350dec3317ae7.js"],"MetadataBoundary"]
 5:"$Sreact.suspense"
 7:I[27201,["/real/_next/static/chunks/ff1a16fafef87110.js","/real/_next/static/chunks/926350dec3317ae7.js"],"IconMark"]
-0:{"buildId":"GiDwWnZtOLvDCTcCqruzq","rsc":["$","$1","h",{"children":[null,["$","$L2",null,{"children":"$@3"}],["$","div",null,{"hidden":true,"children":["$","$L4",null,{"children":["$","$5",null,{"name":"Next.Metadata","children":"$@6"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"jIKb_gNB3kq6R4-PhHhx3","rsc":["$","$1","h",{"children":[null,["$","$L2",null,{"children":"$@3"}],["$","div",null,{"hidden":true,"children":["$","$L4",null,{"children":["$","$5",null,{"name":"Next.Metadata","children":"$@6"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"loading":null,"isPartial":false}
 3:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-6:[["$","title","0",{"children":"Ashby BART"}],["$","meta","1",{"name":"description","content":"A transformative mixed-use development that reimagines urban living at the intersection of transit and community."}],["$","link","2",{"rel":"icon","href":"/icon.svg"}],["$","$L7","3",{}]]
+6:[["$","title","0",{"children":"Ashby BART"}],["$","meta","1",{"name":"description","content":"A transformative mixed-use development that reimagines urban living at the intersection of transit and community."}],["$","link","2",{"rel":"icon","href":"/real/icon.svg"}],["$","$L7","3",{}]]
