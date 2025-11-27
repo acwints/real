@@ -8,13 +8,13 @@ const openai = new OpenAI({
 const SPREADSHEET_ID = '194zQSVqMnUEA9futs2MNPKg2r0g1CLoWdhkDhePOKvI';
 const PUBLISHED_SPREADSHEET_ID = '2PACX-1vSdWinzOWg7eHoMBw4QZcykfJzhN3NvWdqKTf77uq916_6JHxu6Vs_zq5Os5VtD9ywdryxEL_n9wZLi';
 
-// Sheet GIDs (you may need to update these based on your actual sheet tabs)
+// Sheet GIDs from the actual Google Sheets tabs
 const SHEET_GIDS: Record<string, string> = {
-  'proforma': '1321959354',
+  'proforma': '2100723234',
+  'data': '497530682',
   'groundlease': '0',
-  'data': '0',
-  'commercialcomp': '0',
-  'housingcomp': '0',
+  'commercialcomp': '1203643977',
+  'housingcomp': '1784234613',
 };
 
 async function fetchSheetData(sheetName: string): Promise<string> {
@@ -43,22 +43,27 @@ async function fetchSheetData(sheetName: string): Promise<string> {
 
 async function getSpreadsheetContext(): Promise<string> {
   try {
-    // Fetch key tabs
+    // Fetch key tabs - Pro Forma and Data are most important for financial questions
     const [proformaData, dataTab] = await Promise.all([
       fetchSheetData('proforma'),
       fetchSheetData('data'),
     ]);
 
-    return `Current spreadsheet data:
+    // Parse CSV to get meaningful rows (skip empty rows)
+    const proformaRows = proformaData.split('\n').filter(row => row.trim()).slice(0, 80);
+    const dataRows = dataTab.split('\n').filter(row => row.trim()).slice(0, 50);
 
-PRO FORMA TAB (first 50 rows):
-${proformaData.split('\n').slice(0, 50).join('\n')}
+    return `Current spreadsheet data from the Ashby BART financial model:
 
-DATA TAB (first 30 rows):
-${dataTab.split('\n').slice(0, 30).join('\n')}
+PRO FORMA TAB (rows 1-80):
+${proformaRows.join('\n')}
 
-Use this actual data from the spreadsheet to answer questions. If you need more specific data, mention which tab or cell range to check.`;
+DATA TAB (rows 1-50):
+${dataRows.join('\n')}
+
+Use this ACTUAL DATA from the spreadsheet to answer questions. Reference specific numbers, formulas, and calculations from the spreadsheet. If asked about specific metrics (NPV, NOI, debt service, etc.), use the exact values from the Pro Forma tab above.`;
   } catch (error) {
+    console.error('Error fetching spreadsheet context:', error);
     return 'Unable to fetch spreadsheet data. Please refer to the embedded spreadsheet for current values.';
   }
 }
