@@ -187,7 +187,7 @@ export default function ProFormaContent() {
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Market 1BR Units</td>
-                  <td colSpan={10} className="p-3 text-right border border-neutral-300">{market1BRUnits}</td>
+                  <td colSpan={10} className="p-3 text-right border border-neutral-300">{market1BRUnits.toLocaleString()}</td>
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Market 1BR Base Rent (Monthly)</td>
@@ -201,7 +201,7 @@ export default function ProFormaContent() {
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Market 2BR Units</td>
-                  <td colSpan={10} className="p-3 text-right border border-neutral-300">{market2BRUnits}</td>
+                  <td colSpan={10} className="p-3 text-right border border-neutral-300">{market2BRUnits.toLocaleString()}</td>
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Market 2BR Base Rent (Monthly)</td>
@@ -215,7 +215,7 @@ export default function ProFormaContent() {
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Market 3BR Units</td>
-                  <td colSpan={10} className="p-3 text-right border border-neutral-300">{market3BRUnits}</td>
+                  <td colSpan={10} className="p-3 text-right border border-neutral-300">{market3BRUnits.toLocaleString()}</td>
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Market 3BR Base Rent (Monthly)</td>
@@ -256,7 +256,7 @@ export default function ProFormaContent() {
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Affordable 1BR Units</td>
-                  <td colSpan={10} className="p-3 text-right border border-neutral-300">{affordable1BRUnits}</td>
+                  <td colSpan={10} className="p-3 text-right border border-neutral-300">{affordable1BRUnits.toLocaleString()}</td>
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Affordable 1BR Base Rent (Monthly)</td>
@@ -270,7 +270,7 @@ export default function ProFormaContent() {
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Affordable 2BR Units</td>
-                  <td colSpan={10} className="p-3 text-right border border-neutral-300">{affordable2BRUnits}</td>
+                  <td colSpan={10} className="p-3 text-right border border-neutral-300">{affordable2BRUnits.toLocaleString()}</td>
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Affordable 2BR Base Rent (Monthly)</td>
@@ -284,7 +284,7 @@ export default function ProFormaContent() {
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Affordable 3BR Units</td>
-                  <td colSpan={10} className="p-3 text-right border border-neutral-300">{affordable3BRUnits}</td>
+                  <td colSpan={10} className="p-3 text-right border border-neutral-300">{affordable3BRUnits.toLocaleString()}</td>
                 </tr>
                 <tr>
                   <td className="p-3 pl-6 border border-neutral-300">Affordable 3BR Base Rent (Monthly)</td>
