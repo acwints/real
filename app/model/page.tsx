@@ -8,9 +8,8 @@ import Footer from '../components/Footer';
 export default function ModelPage() {
   const [isLoading, setIsLoading] = useState(true);
   const spreadsheetId = '194zQSVqMnUEA9futs2MNPKg2r0g1CLoWdhkDhePOKvI';
-  // Using pubhtml endpoint with headers=true to show row/column headers
-  // Sheet is now published (File > Share > Publish to web)
-  const embedUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/pubhtml?widget=true&headers=true&chrome=false`;
+  // Using published pubhtml URL with headers=true to show row/column headers
+  const embedUrl = `https://docs.google.com/spreadsheets/d/e/2PACX-1vSdWinzOWg7eHoMBw4QZcykfJzhN3NvWdqKTf77uq916_6JHxu6Vs_zq5Os5VtD9ywdryxEL_n9wZLi/pubhtml?widget=true&headers=true&chrome=false`;
 
   useEffect(() => {
     const timer = setTimeout(() => {
