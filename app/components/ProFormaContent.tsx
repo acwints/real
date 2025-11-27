@@ -442,7 +442,7 @@ export default function ProFormaContent() {
                 <tr className="bg-red-50">
                   <td className="p-3 border border-neutral-300">Debt Service (Interest-Only)</td>
                   {years.map((_, i) => (
-                    <td key={i} className="p-3 text-right border border-neutral-300 font-semibold text-red-700">${(debtService / 1000000).toFixed(2)}M</td>
+                    <td key={i} className="p-3 text-right border border-neutral-300 font-semibold text-red-700">${(debtService / 1000000).toFixed(1)}M</td>
                   ))}
                 </tr>
 
