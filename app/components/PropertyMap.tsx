@@ -286,9 +286,9 @@ export default function PropertyMap() {
               offset={[0, -10]}
               className="project-site-label"
             >
-              <div className="font-bold text-red-600 text-sm whitespace-nowrap px-2 py-1">
-                📍 Ashby BART (Project Site)
-              </div>
+              <span className="font-semibold text-red-700 text-[10px] whitespace-nowrap px-1 py-px bg-white/70 rounded">
+                Ashby BART
+              </span>
             </Tooltip>
             <Popup>
               <div className="p-2 min-w-[250px]">
@@ -331,10 +331,9 @@ export default function PropertyMap() {
                 offset={offset}
                 className="comp-label"
               >
-                <div className="font-semibold text-xs whitespace-nowrap px-2 py-1 bg-white rounded shadow-sm border border-gray-200">
-                  <div className="text-blue-700">{property.name || property.address}</div>
-                  <div className="text-gray-500 text-[10px]">{property.units} units • {property.yearBuilt}</div>
-                </div>
+                <span className="text-[10px] font-medium text-gray-700 whitespace-nowrap px-1 py-px bg-white/70 rounded">
+                  {property.name || property.address}
+                </span>
               </Tooltip>
               <Popup>
                 <div className="p-2 min-w-[250px]">
