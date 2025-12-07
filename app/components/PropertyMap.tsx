@@ -31,6 +31,11 @@ const Popup = dynamic(
   { ssr: false }
 );
 
+const Tooltip = dynamic(
+  () => import('react-leaflet').then((mod) => mod.Tooltip),
+  { ssr: false }
+);
+
 const CircleMarker = dynamic(
   () => import('react-leaflet').then((mod) => mod.CircleMarker),
   { ssr: false }
@@ -229,25 +234,32 @@ export default function PropertyMap() {
   }
 
   return (
-    <div className="w-full py-8 px-6">
-      <div className="max-w-7xl mx-auto h-[calc(100vh-12rem)] relative rounded-lg overflow-hidden shadow-xl border border-neutral-200">
-        {/* Legend */}
-        <div className="absolute top-4 right-4 z-[1000] bg-white rounded-lg shadow-lg p-4 border border-gray-200">
+    <div className="w-full py-4 px-4">
+      {/* Title for screenshot */}
+      <div className="max-w-[1400px] mx-auto mb-4">
+        <h2 className="text-2xl font-bold text-gray-900">Ashby BART Development - Comparable Properties Map</h2>
+        <p className="text-gray-600 text-sm mt-1">Top 5 comparable multifamily properties in the East Bay market</p>
+      </div>
+      
+      <div className="max-w-[1400px] mx-auto h-[700px] relative rounded-lg overflow-hidden shadow-xl border border-neutral-200">
+        {/* Legend - optimized for screenshot */}
+        <div className="absolute top-4 right-4 z-[1000] bg-white/95 backdrop-blur rounded-lg shadow-lg p-4 border border-gray-200">
+          <h3 className="font-bold text-sm mb-3 text-gray-800">Legend</h3>
           <div className="space-y-2 text-sm">
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-red-600 rounded-full"></div>
-              <span className="font-medium">Project Site</span>
+              <div className="w-4 h-4 bg-red-600 rounded-full border-2 border-white shadow"></div>
+              <span className="font-medium text-red-700">Project Site (144 units)</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-blue-600 rounded-full"></div>
-              <span>Comparable Properties</span>
+              <div className="w-4 h-4 bg-blue-500 rounded-full border-2 border-white shadow"></div>
+              <span className="text-blue-700">Comparable Properties</span>
             </div>
           </div>
         </div>
 
         <MapContainer
         center={[centerLat, centerLng]}
-        zoom={11}
+        zoom={10}
         style={{ height: '100%', width: '100%' }}
         scrollWheelZoom={true}
         zoomControl={true}
@@ -268,6 +280,16 @@ export default function PropertyMap() {
             position={[projectSite.lat, projectSite.lng]}
             icon={projectIcon}
           >
+            <Tooltip 
+              permanent 
+              direction="top" 
+              offset={[0, -10]}
+              className="project-site-label"
+            >
+              <div className="font-bold text-red-600 text-sm whitespace-nowrap px-2 py-1">
+                📍 Ashby BART (Project Site)
+              </div>
+            </Tooltip>
             <Popup>
               <div className="p-2 min-w-[250px]">
                 <h3 className="font-bold text-lg mb-2 text-red-600">
@@ -288,31 +310,52 @@ export default function PropertyMap() {
         )}
 
         {/* Property Markers (Blue) */}
-        {propertiesWithCoords.map((property) => (
-          <Marker
-            key={property.id}
-            position={[property.lat!, property.lng!]}
-            icon={defaultIcon}
-          >
-            <Popup>
-              <div className="p-2 min-w-[250px]">
-                <h3 className="font-bold text-lg mb-2">
-                  {property.name || property.address}
-                </h3>
-                <div className="space-y-1 text-sm">
-                  <p><strong>Address:</strong> {property.address}</p>
-                  <p><strong>Price:</strong> {formatCurrency(property.price)}</p>
-                  <p><strong>Price/Unit:</strong> {formatCurrency(property.pricePerUnit)}</p>
-                  <p><strong>Price/SF:</strong> ${property.pricePerSF}</p>
-                  <p><strong>Units:</strong> {property.units}</p>
-                  <p><strong>Vacancy:</strong> {property.vacancy}%</p>
-                  <p><strong>Year Built:</strong> {property.yearBuilt}</p>
-                  <p><strong>Sale Date:</strong> {property.saleDate}</p>
+        {propertiesWithCoords.map((property, index) => {
+          // Calculate label positions to avoid overlap
+          const directions: Array<'top' | 'bottom' | 'left' | 'right'> = ['top', 'right', 'bottom', 'left', 'top'];
+          const direction = directions[index % 5];
+          const offset: [number, number] = 
+            direction === 'top' ? [0, -10] :
+            direction === 'bottom' ? [0, 10] :
+            direction === 'left' ? [-10, 0] : [10, 0];
+          
+          return (
+            <Marker
+              key={property.id}
+              position={[property.lat!, property.lng!]}
+              icon={defaultIcon}
+            >
+              <Tooltip 
+                permanent 
+                direction={direction}
+                offset={offset}
+                className="comp-label"
+              >
+                <div className="font-semibold text-xs whitespace-nowrap px-2 py-1 bg-white rounded shadow-sm border border-gray-200">
+                  <div className="text-blue-700">{property.name || property.address}</div>
+                  <div className="text-gray-500 text-[10px]">{property.units} units • {property.yearBuilt}</div>
                 </div>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
+              </Tooltip>
+              <Popup>
+                <div className="p-2 min-w-[250px]">
+                  <h3 className="font-bold text-lg mb-2">
+                    {property.name || property.address}
+                  </h3>
+                  <div className="space-y-1 text-sm">
+                    <p><strong>Address:</strong> {property.address}</p>
+                    <p><strong>Price:</strong> {formatCurrency(property.price)}</p>
+                    <p><strong>Price/Unit:</strong> {formatCurrency(property.pricePerUnit)}</p>
+                    <p><strong>Price/SF:</strong> ${property.pricePerSF}</p>
+                    <p><strong>Units:</strong> {property.units}</p>
+                    <p><strong>Vacancy:</strong> {property.vacancy}%</p>
+                    <p><strong>Year Built:</strong> {property.yearBuilt}</p>
+                    <p><strong>Sale Date:</strong> {property.saleDate}</p>
+                  </div>
+                </div>
+              </Popup>
+            </Marker>
+          );
+        })}
       </MapContainer>
       </div>
     </div>
