@@ -61,7 +61,7 @@ export const properties: Property[] = [
 // Project site (Ashby BART Station)
 export const projectSite = {
   id: 0,
-  name: "North Berkeley BART TOD",
+  name: "Ashby BART TOD",
   address: "3101 Martin Luther King Jr Way & 3100 Adeline St, Berkeley, CA",
   type: "Project" as const,
   unitType: "Mixed",

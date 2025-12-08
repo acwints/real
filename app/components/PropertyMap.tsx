@@ -146,7 +146,7 @@ export default function PropertyMap() {
     <div className="w-full py-4 px-4">
       {/* Title */}
       <div className="max-w-[1400px] mx-auto mb-4">
-        <h2 className="text-2xl font-bold text-gray-900">North Berkeley BART TOD - Rental Comparables Map</h2>
+        <h2 className="text-2xl font-bold text-gray-900">Ashby BART TOD - Rental Comparables Map</h2>
         <p className="text-gray-600 text-sm mt-1">1BR rental comps within 0.6 miles of project site</p>
       </div>
       
@@ -160,7 +160,7 @@ export default function PropertyMap() {
             <div className="flex items-start gap-3">
               <div className="w-4 h-4 bg-red-600 rounded-full border-2 border-white shadow mt-0.5 flex-shrink-0"></div>
               <div>
-                <div className="font-semibold text-red-700 text-sm">North Berkeley BART (Project)</div>
+                <div className="font-semibold text-red-700 text-sm">Ashby BART (Project Site)</div>
                 <div className="text-xs text-gray-500 mt-1">
                   144 units • 50% Affordable / 50% Market
                 </div>
@@ -252,12 +252,12 @@ export default function PropertyMap() {
             >
               <Tooltip 
                 permanent 
-                direction="left" 
-                offset={[-20, 0]}
+                direction="bottom" 
+                offset={[0, 20]}
                 className="project-site-label"
               >
-                <span className="font-bold text-red-700 text-xs whitespace-nowrap px-2 py-1 bg-white rounded shadow">
-                  North Berkeley BART
+                <span className="font-bold text-red-700 text-sm whitespace-nowrap px-3 py-1.5 bg-white rounded-lg shadow-lg border border-red-200">
+                  🏗️ Ashby BART (Project)
                 </span>
               </Tooltip>
               <Popup>
@@ -295,9 +295,18 @@ export default function PropertyMap() {
           )}
 
           {/* Property Markers */}
-          {properties.map((property) => {
+          {properties.map((property, index) => {
             const icon = property.type === 'Market' ? marketIcon : affordableIcon;
             const colorClass = property.type === 'Market' ? 'text-blue-700' : 'text-green-700';
+            const bgClass = property.type === 'Market' ? 'bg-blue-50 border-blue-200' : 'bg-green-50 border-green-200';
+            
+            // Position labels to avoid overlap - different directions for each property
+            const labelPositions: Array<{direction: 'top' | 'bottom' | 'left' | 'right', offset: [number, number]}> = [
+              { direction: 'left', offset: [-18, 0] },    // 26FIFTY - left
+              { direction: 'right', offset: [18, 0] },   // Parker - right  
+              { direction: 'top', offset: [0, -18] },    // Harper Crossing - top
+            ];
+            const pos = labelPositions[index] || { direction: 'top' as const, offset: [0, -18] as [number, number] };
             
             return (
               <Marker
@@ -307,12 +316,12 @@ export default function PropertyMap() {
               >
                 <Tooltip 
                   permanent 
-                  direction="top"
-                  offset={[0, -15]}
+                  direction={pos.direction}
+                  offset={pos.offset}
                   className="comp-label"
                 >
-                  <span className={`text-[10px] font-semibold ${colorClass} whitespace-nowrap px-1.5 py-0.5 bg-white rounded shadow`}>
-                    {property.name}
+                  <span className={`text-sm font-bold ${colorClass} whitespace-nowrap px-3 py-1.5 ${bgClass} rounded-lg shadow-md border`}>
+                    {property.name} • ${property.monthlyRent.toLocaleString()}
                   </span>
                 </Tooltip>
                 <Popup>
