@@ -1,8 +1,5 @@
-Property Name	Address	Type	Units	Year Built	Vacancy Percent	Sale Date	Price	Price Per Unit	Price Per SF	Latitude	Longitude	Notes
-Ashby BART Station	3101 Martin Luther King Jr Way & 3100 Adeline St	Project Site	144	0	0.0%		0	0	0	37.8530	-122.2699	Mixed-use TOD development, 4.4 acres, R-BMU zoning, 70-foot height limit
-2715 Dwight Way	2715 Dwight Way	Comparable	28	1965	0.0%	8/7/2024	9200000	328571	308			Berkeley - Most relevant location match
-17th & Broadway	447 17th St	Comparable	254	2019	7.9%	12/20/2024	99000000	389763	237			Oakland - Best scale and recency match
-Domain Oakland Apartments	1389 Jefferson St	Comparable	264	2011	9.5%	7/10/2024	74280000	281363	296			Oakland - Best value benchmark
-The Beacon	3510 Beacon Ave	Comparable	275	2022	10.9%	6/27/2024	126000000	458181	481			Oakland - New construction benchmark
-Aya	45147 Lopes Rd	Comparable	302	2020	5.0%	6/14/2024	140409126	464930	235			Fremont - Largest scale benchmark
-
+Property	Unit	Tenure	Bed/Bath	Distance To Site	Unit SQF	Monthly Rent	Rent per SQF	Latitude	Longitude	Address
+26FIFTY	1BR	Market	1/1	0.6 Miles	602	$3,395	$5.64	37.8658	-122.2560	2650 Haste St, Berkeley, CA
+Parker	1BR	Market	1/1	0.6 Miles	700	$2,710	$3.87	37.8673	-122.2575	2538 Durant Ave, Berkeley, CA
+Harper Crossing	1BR	Affordable	1/1	0.0 Miles	575	$1,250	$2.17	37.8530	-122.2699	3132 Martin Luther King Jr Way, Berkeley, CA
+North Berkeley BART (Project)	Mixed	Project	1-3BR	0.0 Miles	-	-	-	37.8530	-122.2699	3101 Martin Luther King Jr Way, Berkeley, CA
