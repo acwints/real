@@ -1,0 +1,141 @@
+COMPARISON SUMMARY - ALL THREE OPTIONS
+
+KEY METRICS COMPARISON
+Metric	Option 1: Industrial	Option 2: Walmart	Option 3: Mobile One	Notes
+Building SF	280000	141570	169884	SF
+Total Development Cost	17750000	57471000	108436200	$
+Cost per SF	63.39	405.96	638.30	$/SF
+Timeline (months)	24	51	42	months to stabilization
+Timeline (years)	2.0	4.25	3.5	years
+NOI (Stabilized)	1365000	4671810	15181068	$/year
+Exit Cap Rate	7.25%	5.75%	8.00%	%
+Return on Cost	7.69%	8.13%	14.00%	%
+Unlevered IRR	8.2%	10.8%	15.1%	Base case
+Risk-Adjusted IRR	~7.5%	-6.9%	6.3%	Probability weighted
+Equity Multiple	1.31x	1.72x	2.01x	Base case
+Profit Margin	6.07%	41.38%	75.00%	%
+
+ANNUAL CASH FLOW COMPARISON
+Year	Option 1	Option 2	Option 3	Notes
+Year 0	-15000000	-15000000	-15000000	Acquisition
+Year 1	-1420000	1330000	1330000	Leaseback NOI less renovation
+Year 2	1365000	-5000000	-10000000	Entitlement costs
+Year 3	1365000	-21235500	-41718100	Construction
+Year 4	1365000	-16235500	-41718100	Construction
+Year 5	19816034	4671810	15181068	Sale (Opt 1) / Stabilized (Opt 2-3)
+Year 6	-	4671810	15181068	Operating
+Year 7	-	4671810	15181068	Operating
+Year 8	-	4905401	15181068	Rent bump (Opt 2)
+Year 9	-	4905401	15181068	Operating
+Year 10	-	83605096	185968083	Sale Year 10
+
+CUMULATIVE CAPITAL REQUIRED
+Year	Option 1	Option 2	Option 3	Notes
+Year 0	15000000	15000000	15000000	Acquisition
+Year 1	17750000	15000000	15000000	Peak for Opt 1
+Year 2	17750000	20000000	25000000	Entitlement
+Year 3	17750000	41235500	66718100	Construction
+Year 4	17750000	57471000	108436200	Peak for Opt 2-3
+Peak Capital	17750000	57471000	108436200	Maximum exposure
+
+TIMELINE BREAKDOWN
+Phase	Option 1	Option 2	Option 3	Notes
+Seller Leaseback	12	12	12	months
+Entitlement	0	24	12	months
+Construction	12	15	18	months
+TOTAL TO STABILIZATION	24	51	42	months
+
+RISK-ADJUSTED COMPARISON
+Risk Factor	Option 1	Option 2	Option 3	Notes
+Entitlement Risk	Low (none)	High (could be indefinite)	Medium (1 yr)	Zoning change for Opt 2
+Tenant Credit	Medium (market)	Very Low (AA rated)	Very High (startup)	Mobile One burning $30M/yr
+Construction Risk	Low (renovation)	Medium (new build)	High (specialized + inexperience)	HDP first R&D project
+Market Risk	Low (5% vacancy)	Medium	High (12% vacancy)	R&D market weak
+Re-leasing Risk	Low	Low	Very High (99% premium)	Contract rent 2x market
+Timeline Risk	Low	High (4+ years)	Medium (3.5 years)	Entitlement delays likely
+OVERALL RISK	Low	Medium-High	Very High
+
+IRR SENSITIVITY ANALYSIS
+Scenario	Option 1	Option 2	Option 3	Notes
+Base Case IRR	8.2%	10.8%	15.1%	Everything goes right
+Cap Rate +50bps	6.0%	9.4%	12.4%	Exit cap rate increases
+Cap Rate -50bps	10.5%	12.4%	18.2%	Exit cap rate decreases
+1 Year Delay	7.1%	9.1%	13.5%	Construction/entitlement slip
+Tenant Default	N/A	N/A	-3.2%	Mobile One fails Year 6
+
+PROBABILITY-WEIGHTED IRR ANALYSIS
+Option 1: Industrial
+Scenario	Probability	IRR	Contribution
+Base Case	90%	8.2%	7.4%
+Renovation Overrun	10%	6.5%	0.7%
+EXPECTED IRR	100%		8.1%
+
+Option 2: Walmart
+Scenario	Probability	IRR	Contribution
+On Time Success	40%	10.8%	4.3%
+1 Year Delay	30%	9.1%	2.7%
+2 Year Delay	15%	7.6%	1.1%
+Project Killed	15%	-100%	-15.0%
+EXPECTED IRR	100%		-6.9%
+
+Option 3: Mobile One
+Scenario	Probability	IRR	Contribution
+Full Term (10 yrs)	30%	15.1%	4.5%
+5 Years of Rent	25%	10.2%	2.6%
+3 Years of Rent	20%	5.8%	1.2%
+1 Year of Rent	15%	-3.2%	-0.5%
+Immediate Default	10%	-15.2%	-1.5%
+EXPECTED IRR	100%		6.3%
+
+POSITIVES AND NEGATIVES SUMMARY
+
+OPTION 1: INDUSTRIAL REPOSITIONING
+Positives	Negatives
+Lowest capital ($17.75M)	Lowest absolute returns
+Fastest execution (24 months)	Limited upside potential
+No entitlement risk	City discouraging industrial
+Proven market (5% vacancy)	35-year-old building
+Leaseback income during renovation	Commodity product
+Lowest risk profile	Competes on price only
+Highest risk-adjusted IRR (~8%)
+
+OPTION 2: WALMART BIG BOX
+Positives	Negatives
+AA tenant credit	High entitlement risk
+15-year NNN lease	4.25 year timeline (best case)
+5% rent bumps	Community opposition
+City wants retail	Could be delayed indefinitely
+41% profit margin	$57M capital requirement
+HDP has big box experience	Single-purpose building
+Negative risk-adjusted IRR (-7%)
+
+OPTION 3: MOBILE ONE R&D
+Positives	Negatives
+Highest paper returns (15% IRR)	Startup tenant (no product)
+City supports tech	99% premium to market rent
+Easier entitlements	$108M capital requirement
+14% return on cost	HDP has no R&D experience
+Build-to-suit premium	10-year lease only
+12% market vacancy
+Only 25-30% chance tenant survives
+Risk-adjusted IRR only 6.3%
+
+RECOMMENDATION
+Rank	Option	IRR (Base)	IRR (Risk-Adj)	Rationale
+1	OPTION 1	8.2%	~8%	Best risk-adjusted return; fastest execution; preserve capital
+2	OPTION 2	10.8%	-7%	Only with strong political ties and extended timeline contingency
+3	OPTION 3	15.1%	6%	Paper returns attractive but tenant survival unlikely; avoid
+
+FINAL RECOMMENDATION: OPTION 1
+
+Key Reasons:
+1. Risk-adjusted returns are highest when accounting for probability of success
+2. 24-month execution vs 42-51 months preserves optionality
+3. $17.75M capital requirement vs $57-108M reduces firm risk
+4. Leaseback provides income during renovation
+5. Option value: can pursue redevelopment later if market conditions improve
+6. HDP builds track record for future opportunities
+
+Mitigations if Pursuing Other Options:
+Option 2 - Negotiate Walmart extension options; build political coalition early; budget for 3+ year entitlement
+Option 3 - Require large security deposit; personal guarantees; rent tied to funding milestones; termination rights

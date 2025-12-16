@@ -1,0 +1,62 @@
+OPTION 1: INDUSTRIAL REPOSITIONING PRO-FORMA
+
+DEVELOPMENT BUDGET
+Line Item	Amount ($)	$/SF	Notes
+Acquisition Cost	15000000	53.57	Given
+Renovation Costs	2500000	8.93	Given
+Contingency (10%)	250000	0.89	10% of renovation
+TOTAL DEVELOPMENT COST	17750000	63.39	Sum of above
+
+ANNUAL CASH FLOW PROJECTION
+Line Item	Year 0	Year 1	Year 2	Year 3	Year 4	Year 5	Notes
+CAPITAL OUTFLOWS
+Acquisition	-15000000	0	0	0	0	0	Close at Year 0
+Renovation Costs	0	-2500000	0	0	0	0	During Year 1 (after leaseback)
+Contingency	0	-250000	0	0	0	0	With renovation
+Total Capital Outflow	-15000000	-2750000	0	0	0	0
+
+REVENUE
+Leaseback Rent (Gross)	0	1960000	0	0	0	0	280000*7.00 (12 months)
+Stabilized Rent (Gross)	0	0	2100000	2100000	2100000	2100000	280000*7.50
+Less: Vacancy (5%)	0	0	-105000	-105000	-105000	-105000	5% market vacancy
+Effective Gross Income	0	1960000	1995000	1995000	1995000	1995000
+
+EXPENSES
+Operating Expenses	0	-630000	-630000	-630000	-630000	-630000	280000*2.25 (non-reimbursable)
+
+NET OPERATING INCOME	0	1330000	1365000	1365000	1365000	1365000
+
+NET CASH FLOW (before sale)	-15000000	-1420000	1365000	1365000	1365000	1365000
+
+SALE (End of Year 5)
+Exit Cap Rate	7.25%
+Stabilized NOI	1365000
+Sale Price	0	0	0	0	0	18827586	NOI/Cap Rate
+Less: Sale Costs (2%)	0	0	0	0	0	-376552	Broker, legal, etc.
+Net Sale Proceeds	0	0	0	0	0	18451034
+
+TOTAL NET CASH FLOW	-15000000	-1420000	1365000	1365000	1365000	19816034
+
+RETURN METRICS
+Metric	Value	Formula
+Total Equity Invested	17750000	Sum of capital outflows
+Unlevered IRR	8.2%	IRR of cash flows (Years 0-5)
+Equity Multiple	1.31x	Total inflows / Total outflows
+Return on Cost	7.69%	Stabilized NOI / Total Dev Cost
+Profit (at sale)	1077586	Sale price - Total Dev Cost
+Profit Margin	6.07%	Profit / Total Dev Cost
+
+SENSITIVITY: EXIT CAP RATE
+Exit Cap	Sale Price	Net Proceeds	IRR	Equity Multiple
+6.75%	20222222	19817778	10.5%	1.40x
+7.00%	19500000	19110000	9.4%	1.35x
+7.25%	18827586	18451034	8.2%	1.31x
+7.50%	18200000	17836000	7.1%	1.27x
+7.75%	17612903	17260645	6.0%	1.23x
+
+SENSITIVITY: HOLD PERIOD
+Hold Years	IRR	Equity Multiple	Notes
+3	6.8%	1.14x	Shorter hold, less compounding
+5	8.2%	1.31x	Base case
+7	8.8%	1.48x	Longer hold, more NOI collected
+10	9.2%	1.72x	Extended hold

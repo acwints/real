@@ -1,0 +1,82 @@
+FORMULAS REFERENCE - For Google Sheets Implementation
+
+CORE FORMULAS
+Metric	Formula	Example
+Land SF	Acres * 43560	13*43560 = 566,280 SF
+Building SF	Land SF * Site Coverage %	566280*0.25 = 141,570 SF (Option 2)
+Total Dev Cost	Acquisition + Construction Costs	15000000+42471000 = $57,471,000
+Construction Cost	Building SF * Cost per SF	141570*300 = $42,471,000
+NOI	Effective Gross Income - Operating Expenses	(Rent*SF)*(1-Vacancy%) - (OpEx*SF)
+Return on Cost	NOI / Total Development Cost	4671810/57471000 = 8.13%
+Stabilized Value	NOI / Cap Rate	4671810/0.0575 = $81,249,043
+Profit	Stabilized Value - Total Development Cost	81249043-57471000 = $23,778,043
+Profit Margin	Profit / Total Development Cost	23778043/57471000 = 41.38%
+Development Spread	(Return on Cost - Cap Rate) * 10000	(0.0813-0.0575)*10000 = 238 bps
+
+INDUSTRIAL GROSS LEASE (Option 1)
+Description	Formula
+Gross Rent	Given: $7.50/SF
+Operating Expenses	Given: $2.25/SF (landlord pays, non-reimbursable)
+Net Effective Rent	Gross Rent - Operating Expenses = $7.50 - $2.25 = $5.25/SF
+Vacancy Deduction	Gross Rent * Vacancy % = $7.50 * 5% = $0.375/SF
+NOI per SF	Net Effective Rent * (1 - Vacancy%) = $5.25 * 0.95 = $4.99/SF
+NOI Total	NOI per SF * Building SF = $4.99 * 280,000 = $1,365,000
+
+NNN LEASE (Option 2 - Walmart)
+Description	Formula
+Base Rent (NNN)	Given: $33.00/SF
+Operating Expenses	Given: $10.00/SF (passed through to tenant)
+Effective Gross Income	Base Rent + OpEx Reimbursement = $33 + $10 = $43/SF
+Less: Operating Expenses	$10.00/SF
+NOI	$33.00/SF (equals base rent in NNN)
+Vacancy	0% (single tenant, credit lease)
+NOI Total	$33.00 * 141,570 = $4,671,810
+
+BUILD-TO-SUIT RENT CALC (Option 3)
+Description	Formula
+Total Development Cost	$108,436,200
+Required Return on Cost	14% (given - tenant will pay this)
+Required NOI	Total Dev Cost * Required ROC = $108,436,200 * 0.14 = $15,181,068
+Building SF	169,884
+Required Rent per SF	Required NOI / Building SF = $15,181,068 / 169,884 = $89.36/SF
+
+RENT BUMP CALCULATIONS (Option 2)
+Year Range	Formula	Result
+Years 1-5	Base Rent	$33.00/SF
+Years 6-10	Base * (1 + Bump%)	$33.00 * 1.05 = $34.65/SF
+Years 11-15	Year 6 Rent * (1 + Bump%)	$34.65 * 1.05 = $36.38/SF
+
+TIME VALUE ADJUSTMENTS (Optional Advanced)
+Description	Formula	Notes
+NPV of Cash Flows	NPV(discount_rate, cash_flow_range)	Use for comparing options with different timelines
+IRR	IRR(cash_flow_range)	Include acquisition as negative, sale as positive
+Holding Period Return	(Sale Price - Purchase Price + NOI) / Purchase Price	Simple return over hold period
+
+SENSITIVITY TABLE SETUP
+To create sensitivity tables in Google Sheets:
+1. Set up a data table with cap rates in column A
+2. In cell B1, reference your Stabilized Value formula
+3. Select the range including headers and data
+4. Go to Data then Data Table (or use manual formulas)
+5. For Cap Rate sensitivity: NOI/A2 (where A2 is the cap rate)
+
+KEY ASSUMPTIONS TO MAKE EDITABLE
+Create an Inputs section with these cells that feed into formulas:
+Input Cell	Description	Option 1	Option 2	Option 3
+Acquisition Price	Purchase price	15000000	15000000	15000000
+Land Acres	Site size	13	13	13
+Site Coverage %	Building footprint ratio	N/A	25%	30%
+Construction $/SF	All-in hard and soft	8.93	300	550
+Rent $/SF	Stabilized rent	7.50	33.00	89.36
+Operating Expenses $/SF	Annual OpEx	2.25	10.00	15.00
+Vacancy %	Assumed vacancy	5%	0%	0%
+Exit Cap Rate	Sale cap rate	7.25%	5.75%	8.00%
+Contingency %	Budget contingency	10%	5%	5%
+
+GOOGLE SHEETS TIPS
+Tip	Description
+Named Ranges	Create named ranges for key inputs (e.g., AcquisitionPrice, CapRate) for easier formula reading
+Conditional Formatting	Highlight negative values in red, positive in green
+Data Validation	Add dropdowns for scenario selection
+Sparklines	Add mini charts to show sensitivity ranges
+INDIRECT function	Use INDIRECT("Option"&A1&"!B5") to reference cells across sheets dynamically

@@ -1,0 +1,173 @@
+ASSUMPTIONS TAB - Real Estate Development Analysis
+
+SITE AND ACQUISITION
+Description	Value	Unit	Notes
+Land Area (acres)	13	acres	Given
+Land Area (SF)	566280	SF	13*43560
+Acquisition Price	15000000	$	Given
+Price per Land SF	26.49	$/SF	15000000/566280
+Price per Acre	1153846	$/acre	15000000/13
+
+EXISTING BUILDING CHARACTERISTICS
+Description	Value	Unit	Notes
+Total Building SF	280000	SF	Given
+Warehouse SF	250000	SF	280000-30000 (derived)
+Office SF (included in total)	30000	SF	Given - included in 280,000 SF
+Office % of Building	10.7%	%	30000/280000
+Building Age	35	years	Given
+Clear Height	20	feet	Given (approximate)
+Construction Type	Concrete/Metal	-	Given
+Loading	Dock high + grade level	-	Given
+Power	Heavy power	-	Given
+Fire Protection	Sprinklered	-	Given
+Parking	Secured employee/customer	-	Given
+
+LOCATION CHARACTERISTICS
+Description	Value	Notes
+Address	Marina Blvd west of I-880	San Leandro, CA
+Freeway Access	Very good	I-880 access
+Airport Proximity	10 minutes	Oakland International Airport
+Neighborhood	Industrial pocket	Declining industrial inventory over time
+
+MARKET CONDITIONS
+Description	Industrial	R&D	Retail	Notes
+Market Vacancy	5%	12%	N/A	Given in case
+New Supply	None	Limited	N/A	Industrial inventory declining annually
+Rent Trend	Flat	N/A	N/A	Little upside - tenants relocate when costs spike
+Market Size	N/A	2000000 SF	N/A	R&D market is small
+
+SELLER LEASEBACK TERMS (All Options)
+Description	Value	Unit	Notes
+Tenant	East Bay Industries	-	Office supply distributor
+Leaseback Period	12	months	Until relocation complete
+Lease Type	Industrial Gross	-	Given
+Base Rent	7.00	$/SF/yr	Given
+Operating Expenses	2.25	$/SF/yr	Non-reimbursable (landlord pays)
+Net Effective Rent	4.75	$/SF/yr	7.00-2.25
+Annual Leaseback NOI	1330000	$	(7.00-2.25)*280000
+
+TIMING ASSUMPTIONS
+Description	Option 1	Option 2	Option 3	Unit	Notes
+Seller Leaseback Period	12	12	12	months	Given - all options
+Entitlement Period	0	24	12	months	Option 2 has zoning/political risk
+Entitlement Risk	None	High - could be indefinite	Low - within industrial zoning	-	Per case facts
+Construction Period	12	15	18	months	Given in case
+Construction Risk	Low	Medium	High - HDP first R&D project	-	Experience factor
+Total Development Timeline	24	51	42	months	Sum of above
+Total Development Timeline	2.0	4.25	3.5	years	For discounting
+
+OPTION 1: INDUSTRIAL REPOSITION - DETAILED ASSUMPTIONS
+Description	Value	Unit	Notes
+Existing Building SF	280000	SF	Reuse existing structure
+Renovation Budget	2500000	$	Given
+Renovation $/SF	8.93	$/SF	2500000/280000
+Stabilized Rent - Low	7.50	$/SF/yr	Base $7.00 + $0.50 premium
+Stabilized Rent - High	7.75	$/SF/yr	Base $7.00 + $0.75 premium
+Stabilized Rent - Base Case	7.50	$/SF/yr	Using low end (conservative)
+Lease Type	Industrial Gross	-	Same as current
+Operating Expenses	2.25	$/SF/yr	Non-reimbursable
+Net Effective Rent	5.25	$/SF/yr	7.50-2.25
+Vacancy Assumption	5%	%	Market vacancy rate
+Exit Cap Rate - Low	7.00	%	Given range low
+Exit Cap Rate - High	7.50	%	Given range high
+Exit Cap Rate - Base Case	7.25	%	Midpoint of range
+
+OPTION 2: WALMART BIG BOX - DETAILED ASSUMPTIONS
+Description	Value	Unit	Notes
+Site Coverage Limit	25%	%	Given - parking/landscaping/ingress-egress constraints
+Building SF	141570	SF	566280*0.25
+Hard and Soft Costs	300	$/SF	Given (excl. acquisition)
+Total Construction Cost	42471000	$	141570*300
+Lease Term	15	years	Given
+Lease Type	NNN	-	Triple net
+Base Rent Year 1	33.00	$/SF/yr	Given
+Rent Escalation	5%	%	Every 5 years
+Rent Year 6	34.65	$/SF/yr	33.00*1.05
+Rent Year 11	36.38	$/SF/yr	34.65*1.05
+Operating Expenses	10.00	$/SF/yr	Passed through to tenant (NNN)
+Tenant	Walmart	-	Big box retailer
+Tenant Credit Rating	AA	-	Investment grade
+Tenant Motivation	High	-	No location in this part of San Leandro
+Exit Cap Rate	5.75	%	Strong credit, long lease, NNN, retail
+
+OPTION 2: WALMART - PARKING ANALYSIS
+Description	Value	Unit	Notes
+Total Land SF	566280	SF	13 acres
+Building Footprint	141570	SF	25% coverage
+Remaining for Parking/Landscape	424710	SF	75% of site
+Typical Parking Ratio (Retail)	4.0	spaces/1000 SF	Industry standard
+Required Parking Spaces	566	spaces	141570/1000*4
+Parking Space Size (w/ drive aisle)	350	SF/space	Industry standard
+Parking Area Required	198240	SF	566*350
+Landscape/Detention/Other	226470	SF	424710-198240
+
+OPTION 2: WALMART - POLITICAL/ENTITLEMENT RISK
+Description	Assessment	Notes
+City Position	Supportive	Wants retail for sales tax revenue
+Community Position	Mixed/Opposed	Concerned about traffic
+Anti-Walmart Sentiment	Strong faction	Labor policies, threat to local business
+Zoning Change Required	Yes	Currently zoned industrial
+Best Case Entitlement	24	months
+Worst Case Entitlement	Indefinite	Could be delayed indefinitely per case
+Base Case Assumption	24	months (optimistic)
+
+OPTION 3: MOBILE ONE R&D - DETAILED ASSUMPTIONS
+Description	Value	Unit	Notes
+Site Coverage Limit	30%	%	Given - parking/landscaping constraints
+Building SF	169884	SF	566280*0.30
+Hard and Soft Costs	550	$/SF	Given (excl. acquisition) - specialized
+Total Construction Cost	93436200	$	169884*550
+Lease Term	10	years	Given
+Required Return on Cost	14%	%	Given - tenant will pay rent to achieve this
+Required NOI	15181068	$	108436200*0.14
+Implied Rent (NNN)	89.36	$/SF/yr	15181068/169884
+Operating Expenses	15.00	$/SF/yr	Given
+Implied Full Service Rent	104.36	$/SF/yr	89.36+15.00
+Tenant Occupancy Deadline	30-36	months	Given - must occupy within this window
+Exit Cap Rate	8.00	%	Startup risk, above-market rent, re-lease risk
+
+OPTION 3: MOBILE ONE - TENANT CREDIT ANALYSIS
+Description	Value	Unit	Notes
+Current Cash	120000000	$	Given
+Annual Burn Rate	30000000	$/yr	Given - R&D expenses
+Cash Runway (current)	4.0	years	120M/30M
+Expected Additional Funding	150000000-200000000	$	Over next 18 months
+Funding Timing	18	months	Expected timeframe
+Product Status	None	-	No product yet
+Revenue	0	$	Pre-revenue company
+
+OPTION 3: MOBILE ONE - MARKET RENT COMPARISON
+Description	Value	Unit	Notes
+Contract Rent (NNN equivalent)	89.36	$/SF/yr	To achieve 14% ROC
+Market Rent (Full Service)	55.00	$/SF/yr	Low end of $55-65 range
+Market Rent (Full Service)	65.00	$/SF/yr	High end of $55-65 range
+Market Rent (Full Service) - Mid	60.00	$/SF/yr	Midpoint
+Market Rent (NNN equivalent)	45.00	$/SF/yr	60-15 OpEx
+Premium to Market - $	44.36	$/SF/yr	89.36-45.00
+Premium to Market - %	98.6%	%	44.36/45.00 - MAJOR RED FLAG
+R&D Market Vacancy	12%	%	Given - weak market
+
+OPTION 3: R&D - PARKING ANALYSIS
+Description	Value	Unit	Notes
+Total Land SF	566280	SF	13 acres
+Building Footprint	169884	SF	30% coverage
+Remaining for Parking/Landscape	396396	SF	70% of site
+Typical Parking Ratio (R&D)	3.0	spaces/1000 SF	Industry standard for R&D
+Required Parking Spaces	510	spaces	169884/1000*3
+Parking Space Size (w/ drive aisle)	350	SF/space	Industry standard
+Parking Area Required	178416	SF	510*350
+Landscape/Detention/Other	217980	SF	396396-178416
+
+HDP DEVELOPER PROFILE
+Description	Assessment	Notes
+Location	Oakland-based	Local market knowledge
+Experience - Industrial	Familiar	Per case - familiar with local market
+Experience - Retail (Big Box)	Yes	Prior experience developing big box
+Experience - R&D	None	First R&D project - risk factor
+Capital Capacity	Unknown	Not stated - assume can fund all options
+
+CAP RATE JUSTIFICATION
+Option	Cap Rate	Risk Factors	Justification
+Option 1 - Industrial	7.25%	Low	Midpoint of 7.00-7.50% given range; functional renovated space; proven market
+Option 2 - Walmart	5.75%	Medium	AA credit; 15-yr NNN; rent bumps; offset by entitlement risk and timeline
+Option 3 - Mobile One	8.00%	Very High	Startup tenant; 99% premium to market; 10-yr term only; re-lease risk; HDP inexperience
